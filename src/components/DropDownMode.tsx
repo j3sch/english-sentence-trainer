@@ -23,7 +23,7 @@ export const DropDownMode = (props: Props) => {
 			{({ open }) => (
 				<>
 					<div>
-						<Menu.Button className="inline-flex justify-center w-full shadow-sm px-2 py-2 text-lg font-semibold text-gray-300 focus:outline-none focus:ring-0">
+						<Menu.Button className="inline-flex leading-tight justify-center w-full shadow-sm px-2 py-2 text-lg font-semibold text-gray-300 focus:outline-none focus:ring-0">
 							{selected}
 						</Menu.Button>
 					</div>

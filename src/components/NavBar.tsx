@@ -20,7 +20,7 @@ const NavBar = () => {
 					/>
 					<div className="hidden md:block w-full">
 						<div className="ml-10 items-center flex">
-							<div className="w-1/6">
+							<div className="w-1/6 flex justify-center">
 								<DropDownMode
 									selected="Random - Sentences:"
 									dropDownItems={modeDropDownItems}
