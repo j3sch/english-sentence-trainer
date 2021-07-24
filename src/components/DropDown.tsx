@@ -10,7 +10,7 @@ function classNames(...classes: String[]) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export const DropDownMode = (props: Props) => {
+export function DropDownMode(props: Props) {
 	let { dropDownItems } = props;
 	let { selected } = props;
 
@@ -23,7 +23,7 @@ export const DropDownMode = (props: Props) => {
 			{({ open }) => (
 				<>
 					<div>
-						<Menu.Button className="inline-flex leading-tight justify-center w-full shadow-sm px-2 py-2 text-lg font-semibold text-gray-300 focus:outline-none focus:ring-0">
+						<Menu.Button className="inline-flex leading-tight justify-center w-full shadow-sm px-2 py-2 text-xl font-semibold text-gray-300 focus:outline-none focus:ring-0">
 							{selected}
 						</Menu.Button>
 					</div>
@@ -40,7 +40,7 @@ export const DropDownMode = (props: Props) => {
 					>
 						<Menu.Items
 							static
-							className="dropDown origin-top-right text-center absolute w-56 shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none"
+							className="dropDown origin-top-right text-center absolute w-56 shadow-lg bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"
 						>
 							<div className="py-1">
 								{dropDownItems.map((item: any, index: number) => (
@@ -70,4 +70,4 @@ export const DropDownMode = (props: Props) => {
 			)}
 		</Menu>
 	);
-};
+}

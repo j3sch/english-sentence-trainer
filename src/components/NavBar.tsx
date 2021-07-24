@@ -1,54 +1,55 @@
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
-import { DropDownMode } from '~/components/DropDownMode';
+import { DropDownMode } from '~/components/DropDown';
 import { modeDropDownItems } from '~/data/modesDropDownItems';
 import { languagesDropDownItems } from '~/data/languagesDropDownItems';
 
-const NavBar = () => {
+export function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div>
-			<nav className="bg-gray-800 max-w-7xl mx-auto px-4">
-				<div className="flex items-center h-20">
+			<nav className="bg-black px-4 shadow-xl">
+				<div className="flex items-center h-24">
 					<Image
 						alt="sentence builder logo"
 						src="/images/sentence-builder.svg"
-						width={108}
-						height={36}
+						width={147}
+						height={49}
 						priority
 					/>
 					<div className="hidden md:block w-full">
-						<div className="ml-10 items-center flex">
+						<div className="mx-5 items-center flex">
 							<div className="w-1/6 flex justify-center">
 								<DropDownMode
-									selected="Random - Sentences:"
+									selected="Random"
 									dropDownItems={modeDropDownItems}
 								/>
 							</div>
-
-							<DropDownMode
-								selected="EN"
-								dropDownItems={languagesDropDownItems}
-							/>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-6 w-6 text-gray-300"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+							<div className="mx-5 flex items-center space-x-1">
+								<DropDownMode
+									selected="EN"
+									dropDownItems={languagesDropDownItems}
 								/>
-							</svg>
-							<DropDownMode
-								selected="GER"
-								dropDownItems={languagesDropDownItems}
-							/>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-6 w-6 text-gray-300"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+									/>
+								</svg>
+								<DropDownMode
+									selected="GER"
+									dropDownItems={languagesDropDownItems}
+								/>
+							</div>
 
 							{/* <a
 									href="#"
@@ -157,6 +158,4 @@ const NavBar = () => {
 			</Transition>
 		</div>
 	);
-};
-
-export default NavBar;
+}
