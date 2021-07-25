@@ -17,7 +17,7 @@ export function Main() {
 		e.preventDefault();
 		exerciseHistory.unshift({ translationResult, translatedText });
 		setTranslatedText('');
-		if (exerciseHistory.length === 5) {
+		if (exerciseHistory.length === 4) {
 			exerciseHistory.pop();
 		}
 	};
@@ -40,16 +40,15 @@ export function Main() {
 				return (
 					<div
 						key={i}
-						className="border-t-2 p-5 w-full border-gray-600 text-center text-xl"
+						className="border-2 w-3/4 border-gray-600 text-center text-xl flex flex-col justify-center items-center m-1"
 					>
-						<p>{historyItem.translationResult}</p>
-						<p>{historyItem.translatedText}</p>
+						<p className="h-12 pt-3 border-b-2 border-gray-600 w-full border-opacity-30 bg-green-600 bg-opacity-30">
+							{historyItem.translationResult}
+						</p>
+						<p className="h-12 p-1">{historyItem.translatedText}</p>
 					</div>
 				);
 			})}
-			{exerciseHistory.length > 0 && (
-				<div className="w-full  border-b-2 border-gray-600"></div>
-			)}
 		</div>
 	);
 }
