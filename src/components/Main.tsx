@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+let exerciseHistory: {
+	translationResult: string;
+	translatedText: string;
+}[] = [];
+
 export function Main() {
 	const [textToTranslate, setTextToTranslate] = useState(
 		'Translate this sentence',
@@ -8,10 +13,13 @@ export function Main() {
 	const [translationResult, setTranslationResult] = useState(
 		'Result of the translation',
 	);
-
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		exerciseHistory.unshift({ translationResult, translatedText });
 		setTranslatedText('');
+		if (exerciseHistory.length === 5) {
+			exerciseHistory.pop();
+		}
 	};
 
 	return (
@@ -25,9 +33,23 @@ export function Main() {
 					placeholder="Enter the translation"
 					value={translatedText}
 					onChange={(e) => setTranslatedText(e.target.value)}
-					className="h-24 w-full text-2xl text-center rounded-lg bg-[#706CF9]"
+					className="h-24 w-full text-2xl text-center rounded-lg  bg-[#706CF9]"
 				/>
 			</form>
+			{exerciseHistory.map((historyItem, i) => {
+				return (
+					<div
+						key={i}
+						className="border-t-2 p-5 w-full border-gray-600 text-center text-xl"
+					>
+						<p>{historyItem.translationResult}</p>
+						<p>{historyItem.translatedText}</p>
+					</div>
+				);
+			})}
+			{exerciseHistory.length > 0 && (
+				<div className="w-full  border-b-2 border-gray-600"></div>
+			)}
 		</div>
 	);
 }
