@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 let exerciseHistory: {
 	translationResult: string;
-	translatedText: string;
+	translatedTextSplitted: string[];
+	translationResultSplitted: string[];
 }[] = [];
 
 export function Main() {
@@ -15,7 +16,13 @@ export function Main() {
 	);
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		exerciseHistory.unshift({ translationResult, translatedText });
+		const translatedTextSplitted = translatedText.split('');
+		const translationResultSplitted = translationResult.split('');
+		exerciseHistory.unshift({
+			translationResult,
+			translatedTextSplitted,
+			translationResultSplitted,
+		});
 		setTranslatedText('');
 		if (exerciseHistory.length === 4) {
 			exerciseHistory.pop();
@@ -45,7 +52,22 @@ export function Main() {
 						<p className="h-12 pt-3 border-b-2 border-gray-600 w-full border-opacity-30 bg-green-600 bg-opacity-30">
 							{historyItem.translationResult}
 						</p>
-						<p className="h-12 p-1">{historyItem.translatedText}</p>
+						<div className="h-12  w-full p-3">
+							<p className="py-[0.3rem] border-l-[0.5px] border-gray-600 border-opacity-50 inline" />
+
+							{historyItem.translatedTextSplitted.map((translatedChar, i) => {
+								return historyItem.translationResultSplitted[i] ===
+									translatedChar ? (
+									<p className="py-1 px-px bg-green-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline">
+										{translatedChar}
+									</p>
+								) : (
+									<p className="py-1 px-px bg-red-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline">
+										{translatedChar}
+									</p>
+								);
+							})}
+						</div>
 					</div>
 				);
 			})}
