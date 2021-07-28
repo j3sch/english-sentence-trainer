@@ -3,7 +3,7 @@ export function textEqual(
 	translationResult: string,
 ): number[] {
 	let translatedTextWords = removePunction(translatedText).split(' ');
-	let translationResultWords = translationResult.split(' ');
+	let translationResultWords = removePunction(translationResult).split(' ');
 	let charArraytranslationResult = [''];
 	let letterEqual: number[] = [];
 	let translatedTextArray = [''];
@@ -42,11 +42,28 @@ export function textEqual(
 		}
 		letterEqualPosition += translatedTextWords[i].length;
 	}
-	return letterEqual;
+	return addRemovedPuntion(translatedText, translationResult, letterEqual);;
 }
 
 function removePunction(text: string): string {
-	let textWithoutPunction = text.replace(/[.][!][?]/, '')
-
+	let textWithoutPunction = text.replace(/[.!?]/g, '');
 	return textWithoutPunction;
+}
+
+function addRemovedPuntion(translatedText: string, translationResult: string, letterEqual: number[]): number[] {
+	if (
+		translatedText.charAt(translatedText.length - 1) === '?' ||
+		translatedText.charAt(translatedText.length - 1) === '!' ||
+		translatedText.charAt(translatedText.length - 1) === '.'
+	) {
+		if (
+			translatedText.charAt(translatedText.length - 1) ===
+			translationResult.charAt(translationResult.length - 1)
+		) {
+			letterEqual.push(1);
+		} else {
+			letterEqual.push(0);
+		}
+	}
+	return letterEqual;
 }

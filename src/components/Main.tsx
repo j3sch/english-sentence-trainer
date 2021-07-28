@@ -41,7 +41,9 @@ export function Main() {
 		pickRandomExercise();
 	};
 	function pickRandomExercise() {
-		let randomNum = Math.floor(Math.random() * simplePresentIntermediate.length);
+		let randomNum = Math.floor(
+			Math.random() * simplePresentIntermediate.length,
+		);
 		setTextToTranslate(simplePresentIntermediate[randomNum].ger);
 		setTranslationResult(simplePresentIntermediate[randomNum].en);
 	}
@@ -78,11 +80,17 @@ export function Main() {
 								translatedChar === ' ' && counter++;
 								return historyItem.translationBackgroundColor[i - counter] ===
 									1 ? (
-									<p className="py-1 px-px bg-green-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline">
+									<p
+										key={i}
+										className="py-1 px-px bg-green-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
+									>
 										{translatedChar}
 									</p>
 								) : (
-									<p className="py-1 px-px bg-red-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline">
+									<p
+										key={i}
+										className="py-1 px-px bg-red-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
+									>
 										{translatedChar}
 									</p>
 								);
