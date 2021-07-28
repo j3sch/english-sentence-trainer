@@ -9,6 +9,10 @@ export const modeDropDownItems: modeDropDownItems[] = [
 		displayNavBar: 'Random',
 	},
 	{
+		name: 'Simple Present',
+		displayNavBar: 'Simple Present',
+	},
+	{
 		name: 'Simple Past',
 		displayNavBar: 'Simple Past',
 	},
