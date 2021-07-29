@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
-import { DropDownMode } from '~/components/DropDown';
+import { DropDown } from '~/components/DropDown';
 import { modeDropDownItems } from '~/data/modesDropDownItems';
 import { languagesDropDownItems } from '~/data/languagesDropDownItems';
 
@@ -21,14 +21,11 @@ export function NavBar() {
 					<div className="hidden md:block w-full">
 						<div className="mx-5 items-center flex">
 							<div className="w-1/6 flex justify-center">
-								<DropDownMode
-									selected="Random"
-									dropDownItems={modeDropDownItems}
-								/>
+								<DropDown name="Mode" dropDownItems={modeDropDownItems} />
 							</div>
 							<div className="mx-5 flex items-center space-x-1">
-								<DropDownMode
-									selected="EN"
+								<DropDown
+									name="QuestionLanguage"
 									dropDownItems={languagesDropDownItems}
 								/>
 								<svg
@@ -45,8 +42,8 @@ export function NavBar() {
 										d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
 									/>
 								</svg>
-								<DropDownMode
-									selected="GER"
+								<DropDown
+									name="AnswerLanguage"
 									dropDownItems={languagesDropDownItems}
 								/>
 							</div>

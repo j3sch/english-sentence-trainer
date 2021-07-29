@@ -1,21 +1,34 @@
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-
+import React, { useContext } from 'react';
+import { Context } from '~/utils/Context';
 interface Props {
+	name: string;
 	dropDownItems: any[];
-	selected: String;
 }
 
 function classNames(...classes: String[]) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export function DropDownMode(props: Props) {
+export function DropDown(props: Props) {
+	let { name } = props;
 	let { dropDownItems } = props;
-	let { selected } = props;
+	const {
+		setLanguageMode,
+		languageMode,
+		setQuestionLanguage,
+		questionLanguage,
+		setAnswerLangauge,
+		answerLanguage,
+	} = useContext(Context) || {};
 
-	const handleClick = (text: String) => {
-		selected = text;
+	const handleClick = (textClicked: string) => {
+		name === 'Mode'
+			? setLanguageMode(textClicked)
+			: name === 'QuestionLanguage'
+			? setQuestionLanguage(textClicked)
+			: setAnswerLangauge(textClicked);
 	};
 
 	return (
@@ -24,7 +37,11 @@ export function DropDownMode(props: Props) {
 				<>
 					<div>
 						<Menu.Button className="inline-flex leading-tight justify-center w-full shadow-sm px-2 py-2 text-xl font-semibold text-gray-300 focus:outline-none focus:ring-0">
-							{selected}
+							{name === 'Mode'
+								? languageMode
+								: name === 'QuestionLanguage'
+								? questionLanguage
+								: answerLanguage}
 						</Menu.Button>
 					</div>
 

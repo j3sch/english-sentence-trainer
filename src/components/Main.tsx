@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { simplePresentIntermediate } from '~/data/simplePresentIntermediate';
 import { textEqual } from '~/helper/textSame';
+import { Context } from '~/utils/Context';
 
 let exerciseHistory: {
 	translationResult: string;
@@ -16,6 +17,7 @@ export function Main() {
 	const [translationResult, setTranslationResult] = useState(
 		'Result of the translation',
 	);
+	const { languageMode } = useContext(Context) || {};
 
 	let counter = 0;
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
