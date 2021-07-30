@@ -41,8 +41,6 @@ export function DropDown(props: Props) {
 		switch (name) {
 			case 'Mode':
 					setLanguageMode(textClicked);
-				
-
 				break;
 			case 'QuestionLanguage':
 				setQuestionLanguage(textClicked);
