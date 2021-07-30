@@ -13,6 +13,10 @@ export const modeDropDownItems: modeDropDownItems[] = [
 		displayNavBar: 'Simple Present',
 	},
 	{
+		name: 'Present Progressive',
+		displayNavBar: 'Present Progressive',
+	},
+	{
 		name: 'Simple Past',
 		displayNavBar: 'Simple Past',
 	},
@@ -21,19 +25,23 @@ export const modeDropDownItems: modeDropDownItems[] = [
 		displayNavBar: 'Past Progessive',
 	},
 	{
-		name: 'Present Perfect',
-		displayNavBar: 'Present Perfect',
+		name: 'Simple Present Perfect',
+		displayNavBar: 'Simple Present Perfect',
 	},
 	{
-		name: 'Present Perfect Progesseive',
-		displayNavBar: 'Present Perfect Progesseive',
+		name: 'Present Perfect Progessive',
+		displayNavBar: 'Present Perfect Progessive',
 	},
 	{
-		name: 'Past Perfect Simple',
-		displayNavBar: 'Past Perfect Simple',
+		name: 'Simple Past Perfect',
+		displayNavBar: 'Simple Past Perfect',
 	},
 	{
-		name: 'Past Perfect Progessive',
-		displayNavBar: 'Past Perfect Progessive',
+		name: 'will-future',
+		displayNavBar: 'will-future',
+	},
+	{
+		name: 'going to-future',
+		displayNavBar: 'going to-future',
 	},
 ];

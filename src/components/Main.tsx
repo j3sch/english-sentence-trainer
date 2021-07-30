@@ -1,7 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { simplePresentIntermediate } from '~/data/simplePresentIntermediate';
-import { textEqual } from '~/helper/textSame';
-import { Context } from '~/utils/Context';
+import { simplePresent } from '~/data/ger-en/simplePresent';
+import { presentProgressive } from '~/data/ger-en/presentProgressive';
+import { textEqual } from '~/helper/textEqual';
+import { Context } from '~/utils/context';
+import { simplePast } from '~/data/ger-en/simplePast';
+import { pastProgressive } from '~/data/ger-en/pastProgressive';
+import { presentPerfectProgressive } from '~/data/ger-en/presentPerfectProgressive';
+import { simplePastPerfect } from '~/data/ger-en/simplePastPerfect';
+import { willFuture } from '~/data/ger-en/willFuture';
+import { goingToFuture } from '~/data/ger-en/goingToFuture';
+import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
+import { pickRandomExercise } from '~/helper/pickRandomExercise';
+import { language } from 'gray-matter';
 
 let exerciseHistory: {
 	translationResult: string;
@@ -10,18 +20,21 @@ let exerciseHistory: {
 }[] = [];
 
 export function Main() {
-	const [textToTranslate, setTextToTranslate] = useState(
-		'Translate this sentence',
-	);
 	const [translatedText, setTranslatedText] = useState('');
-	const [translationResult, setTranslationResult] = useState(
-		'Result of the translation',
-	);
-	const { languageMode } = useContext(Context) || {};
+	const {
+		languageMode,
+		textToTranslate,
+		setTextToTranslate,
+		translationResult,
+		setTranslationResult,
+		file,
+		setFile,
+	} = useContext(Context) || {};
 
 	let counter = 0;
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
 		counter = 0;
 		if (translatedText.length !== 0) {
 			const translatedTextSplitted = translatedText.split('');
@@ -29,7 +42,6 @@ export function Main() {
 				translatedText,
 				translationResult,
 			);
-			console.log(translationBackgroundColor);
 			exerciseHistory.unshift({
 				translationResult,
 				translatedTextSplitted,
@@ -40,18 +52,21 @@ export function Main() {
 				exerciseHistory.pop();
 			}
 		}
-		pickRandomExercise();
+		pickExercise();
 	};
-	function pickRandomExercise() {
-		let randomNum = Math.floor(
-			Math.random() * simplePresentIntermediate.length,
-		);
-		setTextToTranslate(simplePresentIntermediate[randomNum].ger);
-		setTranslationResult(simplePresentIntermediate[randomNum].en);
+
+	function pickExercise() {
+		if (languageMode === 'Random') {
+			setFile(pickRandomExercise());
+		}
+
+		let randomNum = Math.floor(Math.random() * file.length);
+		setTextToTranslate(file[randomNum].ger);
+		setTranslationResult(file[randomNum].en);
 	}
 
-	if (textToTranslate === 'Translate this sentence') {
-		pickRandomExercise();
+	if (textToTranslate === '') {
+		pickExercise();
 	}
 	return (
 		<div className="flex flex-col justify-items-center bg-[#212123] h-full w-full text-gray-300 items-center">
