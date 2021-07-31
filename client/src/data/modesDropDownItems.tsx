@@ -21,16 +21,16 @@ export const modeDropDownItems: modeDropDownItems[] = [
 		displayNavBar: 'Simple Past',
 	},
 	{
-		name: 'Past Progessive',
-		displayNavBar: 'Past Progessive',
+		name: 'Past Progressive',
+		displayNavBar: 'Past Progressive',
 	},
 	{
 		name: 'Simple Present Perfect',
 		displayNavBar: 'Simple Present Perfect',
 	},
 	{
-		name: 'Present Perfect Progessive',
-		displayNavBar: 'Present Perfect Progessive',
+		name: 'Present Perfect Progressive',
+		displayNavBar: 'Present Perfect Progressive',
 	},
 	{
 		name: 'Simple Past Perfect',

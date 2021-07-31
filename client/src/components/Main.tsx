@@ -1,17 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { simplePresent } from '~/data/ger-en/simplePresent';
-import { presentProgressive } from '~/data/ger-en/presentProgressive';
 import { textEqual } from '~/helper/textEqual';
 import { Context } from '~/utils/context';
-import { simplePast } from '~/data/ger-en/simplePast';
-import { pastProgressive } from '~/data/ger-en/pastProgressive';
-import { presentPerfectProgressive } from '~/data/ger-en/presentPerfectProgressive';
-import { simplePastPerfect } from '~/data/ger-en/simplePastPerfect';
-import { willFuture } from '~/data/ger-en/willFuture';
-import { goingToFuture } from '~/data/ger-en/goingToFuture';
-import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
 import { pickRandomExercise } from '~/helper/pickRandomExercise';
-import { language } from 'gray-matter';
 
 let exerciseHistory: {
 	translationResult: string;

@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { Context } from '~/utils/context';
 import { simplePresent } from '~/data/ger-en/simplePresent';
 import { presentProgressive } from '~/data/ger-en/presentProgressive';
@@ -12,6 +12,7 @@ import { willFuture } from '~/data/ger-en/willFuture';
 import { goingToFuture } from '~/data/ger-en/goingToFuture';
 import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
 import { pickRandomExercise } from '~/helper/pickRandomExercise';
+
 interface Props {
 	name: string;
 	dropDownItems: any[];
@@ -24,23 +25,25 @@ function classNames(...classes: String[]) {
 export function DropDown(props: Props) {
 	let { name } = props;
 	let { dropDownItems } = props;
+	let currentLanguageMode = '';
+
 	const {
 		setLanguageMode,
-		languageMode,
 		setQuestionLanguage,
-		questionLanguage,
 		setAnswerLangauge,
+		languageMode,
+		questionLanguage,
 		answerLanguage,
 		setTranslationResult,
 		setTextToTranslate,
-		file,
 		setFile,
 	} = useContext(Context) || {};
 
 	const handleClick = (textClicked: string) => {
 		switch (name) {
 			case 'Mode':
-					setLanguageMode(textClicked);
+				setLanguageMode(textClicked);
+				currentLanguageMode = textClicked;
 				break;
 			case 'QuestionLanguage':
 				setQuestionLanguage(textClicked);
@@ -49,7 +52,6 @@ export function DropDown(props: Props) {
 				setAnswerLangauge(textClicked);
 				break;
 		}
-		pickExercise();
 	};
 
 	function pickExercise() {
@@ -66,12 +68,11 @@ export function DropDown(props: Props) {
 			'going to-future': goingToFuture,
 		};
 
-		console.log(languageMode);
-
-		setFile((currentMode as any)[languageMode]);
-		let randomNum = Math.floor(Math.random() * file.length);
-		setTextToTranslate(file[randomNum].ger);
-		setTranslationResult(file[randomNum].en);
+		setFile((currentMode as any)[currentLanguageMode]);
+		let currentFile = (currentMode as any)[currentLanguageMode];
+		let randomNum = Math.floor(Math.random() * currentFile.length);
+		setTextToTranslate(currentFile[randomNum].ger);
+		setTranslationResult(currentFile[randomNum].en);
 	}
 
 	return (
@@ -106,7 +107,10 @@ export function DropDown(props: Props) {
 								{dropDownItems.map((item: any, index: number) => (
 									<Menu.Item
 										key={index}
-										onClick={() => handleClick(`${item.displayNavBar}`)}
+										onClick={() => {
+											handleClick(`${item.displayNavBar}`);
+											pickExercise();
+										}}
 									>
 										{({ active }) => (
 											<a
