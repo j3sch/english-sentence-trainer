@@ -45,16 +45,16 @@ export default function Home({ properties, cookie }: any): JSX.Element {
 
 export async function getServerSideProps(ctx: {}) {
 	const { db } = await connectToDatabase();
+	let randomString;
 
 	let cookies = nookies.get(ctx);
 
 	if (cookies['Cookie'] === undefined) {
-		nookies.set(ctx, 'Cookie', randomstring.generate(), {
+		randomString = randomstring.generate();
+		nookies.set(ctx, 'Cookie', randomString, {
 			path: '/',
-			domain: 'web-server',
+			maxAge: 10 * 365 * 24 * 60 * 60,
 		});
-		cookies = nookies.get(ctx);
-		console.log(cookies);
 	}
 
 	const cookie = cookies['Cookie'];
@@ -76,13 +76,6 @@ export async function getServerSideProps(ctx: {}) {
 			.sort({ _id: -1 })
 			.limit(3)
 			.toArray();
-
-		// const data = await db
-		// 	.collection('exercises')
-		// 	.find({})
-		// 	.sort({ $natural: -1 })
-		// 	.limit(3)
-		// 	.toArray();
 
 		const properties = JSON.parse(JSON.stringify(data));
 
@@ -118,7 +111,7 @@ export async function getServerSideProps(ctx: {}) {
 	}
 	{
 		return {
-			props: { cookie: null },
+			props: { cookie: randomString },
 		};
 	}
 }
