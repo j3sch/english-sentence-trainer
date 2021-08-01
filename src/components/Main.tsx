@@ -20,6 +20,7 @@ export function Main() {
 		file,
 		setFile,
 		properties,
+		cookie,
 	} = useContext(Context) || {};
 
 	useEffect(() => {
@@ -56,7 +57,7 @@ export function Main() {
 		translatedTextSplitted: string[],
 	) => {
 		const data = await fetch(
-			`http://localhost:3000/api/exercises?letterEqual=${letterEqual}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}`,
+			`http://localhost:3000/api/exercises?letterEqual=${letterEqual}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
 		);
 		console.log(data.json());
 	};

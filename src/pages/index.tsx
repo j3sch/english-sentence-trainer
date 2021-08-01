@@ -3,8 +3,10 @@ import { NavBar } from '~/components/NavBar';
 import React, { useState } from 'react';
 import { Context } from '~/utils/context';
 import { connectToDatabase } from '~/utils/mongodb';
+import nookies from 'nookies';
+const randomstring = require('randomstring');
 
-export default function Home({ properties }: any): JSX.Element {
+export default function Home({ properties, cookie }: any): JSX.Element {
 	const [languageMode, setLanguageMode] = useState('Random');
 	const [questionLanguage, setQuestionLanguage] = useState('Ger');
 	const [answerLanguage, setAnswerLangauge] = useState('En');
@@ -31,6 +33,7 @@ export default function Home({ properties }: any): JSX.Element {
 					file,
 					setFile,
 					properties,
+					cookie,
 				}}
 			>
 				<NavBar />
@@ -40,8 +43,20 @@ export default function Home({ properties }: any): JSX.Element {
 	);
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx: {}) {
 	const { db } = await connectToDatabase();
+
+	const cookies = nookies.get(ctx);
+
+	if (cookies['Cookie'].length === 0) {
+		nookies.set(ctx, 'Cookie', randomstring.generate(), {
+			path: '/',
+		});
+	}
+
+	const cookie = cookies['Cookie'];
+
+	console.log(cookie);
 
 	const data = await db
 		.collection('exercises')
@@ -62,9 +77,11 @@ export async function getServerSideProps() {
 			};
 		}) => {
 			const letterEqualArray = property.data.letterEqual.split(',');
+
 			const letterEqualNumber = letterEqualArray.map((letter: string) => {
 				return parseInt(letter);
 			});
+
 			const translatedTextSplitted =
 				property.data.translatedTextSplitted.split(',');
 
@@ -77,9 +94,7 @@ export async function getServerSideProps() {
 		},
 	);
 
-	console.log(filtered);
-
 	return {
-		props: { properties: filtered },
+		props: { properties: filtered, cookie },
 	};
 }

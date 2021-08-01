@@ -18,6 +18,7 @@ interface ContextProps {
 		translatedTextSplitted: string[];
 		translationResult: string;
 	}[];
+	cookie: string;
 }
 
 export const Context = createContext({} as ContextProps);
