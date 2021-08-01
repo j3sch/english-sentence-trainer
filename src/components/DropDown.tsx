@@ -15,6 +15,7 @@ import { pickRandomExercise } from '~/helper/pickRandomExercise';
 
 interface Props {
 	name: string;
+	exercises: any;
 	dropDownItems: any[];
 }
 
@@ -135,3 +136,4 @@ export function DropDown(props: Props) {
 		</Menu>
 	);
 }
+

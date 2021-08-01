@@ -13,6 +13,11 @@ interface ContextProps {
 	setTranslationResult: Dispatch<SetStateAction<string>>;
 	file: { ger: string; en: string }[];
 	setFile: Dispatch<SetStateAction<{ ger: string; en: string }[]>>;
+	properties: {
+		letterEqual: number[];
+		translatedTextSplitted: string[];
+		translationResult: string;
+	};
 }
 
 export const Context = createContext({} as ContextProps);
