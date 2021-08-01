@@ -19,6 +19,7 @@ interface ContextProps {
 		translationResult: string;
 	}[];
 	cookie: string;
+	ctx: {};
 }
 
 export const Context = createContext({} as ContextProps);

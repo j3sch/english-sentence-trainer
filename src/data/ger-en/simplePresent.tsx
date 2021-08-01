@@ -59,4 +59,36 @@ export const simplePresent: { ger: string; en: string }[] = [
 		ger: 'Das ist das ganze Geld, das ich habe.',
 		en: 'This is all the money I have.',
 	},
+	{
+		ger: 'Da du nichts mit der Sache zu tun hast, brauchst du keine Angst zu haben.',
+		en: "Since you have nothing to do with this matter, you don't have to worry",
+	},
+	{
+		ger: 'Da er schon alt ist, muss diese Aufgabe schwierig für ihn sein.',
+		en: 'Since he is old, this task must be difficult for him.',
+	},
+	{
+		ger: 'Da ist nicht die Zeit dafür da, um über so etwas zu streiten.',
+		en: 'There is no time to quarrel over such a thing.',
+	},
+	{
+		ger: 'Da sie sehr vorsichtig ist, macht sie kaum Fehler.',
+		en: 'She is very careful, so she seldom makes mistakes. ',
+	},
+	{
+		ger: 'Darf ich fragen, wie alt du bist? ',
+		en: 'May I ask how old you are?',
+	},
+	{
+		ger: 'Das Abendessen ist fertig, Vater.',
+		en: 'Dinner is ready, Father.',
+	},
+	{
+		ger: 'Das Einzige, was wir tun können, ist zu warten, bis die Polizei eintrifft.',
+		en: 'All we can do is wait for the police to arrive.',
+	},
+	{
+		ger: 'Das geht dich nichts an, Tom!',
+		en: "This doesn't concern you, Tom.",
+	},
 ];

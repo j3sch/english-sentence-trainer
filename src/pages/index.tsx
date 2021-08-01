@@ -6,14 +6,24 @@ import { connectToDatabase } from '~/utils/mongodb';
 import nookies from 'nookies';
 const randomstring = require('randomstring');
 
-export default function Home({ properties, cookie }: any): JSX.Element {
-	const [languageMode, setLanguageMode] = useState('Random');
+export default function Home({ properties, cookie, ctx }: any): JSX.Element {
+	const [languageMode, setLanguageMode] = useState(getCurrentMode());
 	const [questionLanguage, setQuestionLanguage] = useState('Ger');
 	const [answerLanguage, setAnswerLangauge] = useState('En');
 
 	const [textToTranslate, setTextToTranslate] = useState('');
 	const [translationResult, setTranslationResult] = useState('');
 	const [file, setFile] = useState([{ ger: '', en: '' }]);
+
+	function getCurrentMode() {
+		let cookies = nookies.get(ctx);
+
+		if (cookies['SelectedLanguageMode'] === undefined) {
+			return 'Random';
+		} else {
+			return cookies['SelectedLanguageMode'];
+		}
+	}
 
 	return (
 		<div className="h-full w-full">
@@ -34,6 +44,7 @@ export default function Home({ properties, cookie }: any): JSX.Element {
 					setFile,
 					properties,
 					cookie,
+					ctx,
 				}}
 			>
 				<NavBar />
@@ -56,7 +67,6 @@ export async function getServerSideProps(ctx: {}) {
 			maxAge: 10 * 365 * 24 * 60 * 60,
 		});
 	}
-
 	const cookie = cookies['Cookie'];
 
 	if (cookie !== undefined) {

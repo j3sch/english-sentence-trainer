@@ -8,9 +8,9 @@ import { willFuture } from '~/data/ger-en/willFuture';
 import { goingToFuture } from '~/data/ger-en/goingToFuture';
 import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
 
-export function pickRandomExercise() {
-    let pickExerciseCategory = [
-        simplePresent,
+export function pickRandomExercise(){
+	let pickExerciseCategory = [
+		simplePresent,
 		presentProgressive,
 		presentProgressive,
 		simplePast,

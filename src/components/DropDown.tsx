@@ -12,10 +12,10 @@ import { willFuture } from '~/data/ger-en/willFuture';
 import { goingToFuture } from '~/data/ger-en/goingToFuture';
 import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
 import { pickRandomExercise } from '~/helper/pickRandomExercise';
+import nookies from 'nookies';
 
 interface Props {
 	name: string;
-	exercises: any;
 	dropDownItems: any[];
 }
 
@@ -38,6 +38,7 @@ export function DropDown(props: Props) {
 		setTranslationResult,
 		setTextToTranslate,
 		setFile,
+		ctx,
 	} = useContext(Context) || {};
 
 	const handleClick = (textClicked: string) => {
@@ -45,6 +46,7 @@ export function DropDown(props: Props) {
 			case 'Mode':
 				setLanguageMode(textClicked);
 				currentLanguageMode = textClicked;
+				setCookieCurrentMode(textClicked);
 				break;
 			case 'QuestionLanguage':
 				setQuestionLanguage(textClicked);
@@ -54,6 +56,13 @@ export function DropDown(props: Props) {
 				break;
 		}
 	};
+
+	function setCookieCurrentMode(textClicked: string) {
+		nookies.set(ctx, 'SelectedLanguageMode', textClicked, {
+			path: '/',
+			maxAge: 10 * 365 * 24 * 60 * 60,
+		});
+	}
 
 	function pickExercise() {
 		let currentMode = {
@@ -136,4 +145,3 @@ export function DropDown(props: Props) {
 		</Menu>
 	);
 }
-

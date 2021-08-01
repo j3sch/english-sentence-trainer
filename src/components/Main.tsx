@@ -24,6 +24,7 @@ export function Main() {
 	} = useContext(Context) || {};
 
 	useEffect(() => {
+		console.log(properties);
 		if (properties !== undefined) {
 			for (let i = 0; i < properties.length; i++) {
 				exerciseHistory.push(properties[i]);
@@ -67,6 +68,7 @@ export function Main() {
 	function pickExercise() {
 		if (languageMode === 'Random') {
 			setFile(pickRandomExercise());
+			//TODO 
 		}
 
 		let randomNum = Math.floor(Math.random() * file.length);
