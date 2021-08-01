@@ -26,7 +26,6 @@ export function Main() {
 		for (let i = 0; i < properties.length; i++) {
 			exerciseHistory.push(properties[i]);
 		}
-		console.log(exerciseHistory);
 	}, []);
 
 	let counter = 0;
@@ -49,7 +48,6 @@ export function Main() {
 				exerciseHistory.pop();
 			}
 		}
-		console.log(exerciseHistory);
 		pickExercise();
 	};
 

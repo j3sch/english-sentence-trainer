@@ -17,7 +17,7 @@ interface ContextProps {
 		letterEqual: number[];
 		translatedTextSplitted: string[];
 		translationResult: string;
-	};
+	}[];
 }
 
 export const Context = createContext({} as ContextProps);

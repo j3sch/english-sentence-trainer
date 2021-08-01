@@ -52,21 +52,30 @@ export async function getServerSideProps() {
 
 	const properties = JSON.parse(JSON.stringify(data));
 
-	const filtered = properties.map((property: any) => {
-		const letterEqualArray = property.data.letterEqual.split(',');
-		const letterEqualNumber = letterEqualArray.map((letter: string) => {
-			return parseInt(letter);
-		});
-		const translatedTextSplitted =
-			property.data.translatedTextSplitted.split(',');
+	const filtered = properties.map(
+		(property: {
+			_id: number;
+			data: {
+				letterEqual: string;
+				translatedTextSplitted: string;
+				translationResult: string;
+			};
+		}) => {
+			const letterEqualArray = property.data.letterEqual.split(',');
+			const letterEqualNumber = letterEqualArray.map((letter: string) => {
+				return parseInt(letter);
+			});
+			const translatedTextSplitted =
+				property.data.translatedTextSplitted.split(',');
 
-		return {
-			_id: property._id,
-			letterEqual: letterEqualNumber,
-			translationResult: property.data.translationResult,
-			translatedTextSplitted: translatedTextSplitted,
-		};
-	});
+			return {
+				_id: property._id,
+				letterEqual: letterEqualNumber,
+				translationResult: property.data.translationResult,
+				translatedTextSplitted: translatedTextSplitted,
+			};
+		},
+	);
 
 	console.log(filtered);
 
