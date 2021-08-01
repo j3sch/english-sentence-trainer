@@ -46,55 +46,79 @@ export default function Home({ properties, cookie }: any): JSX.Element {
 export async function getServerSideProps(ctx: {}) {
 	const { db } = await connectToDatabase();
 
-	const cookies = nookies.get(ctx);
+	let cookies = nookies.get(ctx);
 
-	if (cookies['Cookie'].length === 0) {
+	if (cookies['Cookie'] === undefined) {
 		nookies.set(ctx, 'Cookie', randomstring.generate(), {
 			path: '/',
+			domain: 'web-server',
 		});
+		cookies = nookies.get(ctx);
+		console.log(cookies);
 	}
 
 	const cookie = cookies['Cookie'];
 
-	console.log(cookie);
+	if (cookie !== undefined) {
+		const data = await db
+			.collection('exercises')
+			.aggregate([
+				{
+					$search: {
+						index: 'default',
+						text: {
+							query: cookie,
+							path: 'data.cookie',
+						},
+					},
+				},
+			])
+			.sort({ _id: -1 })
+			.limit(3)
+			.toArray();
 
-	const data = await db
-		.collection('exercises')
-		.find({})
-		.sort({ $natural: -1 })
-		.limit(3)
-		.toArray();
+		// const data = await db
+		// 	.collection('exercises')
+		// 	.find({})
+		// 	.sort({ $natural: -1 })
+		// 	.limit(3)
+		// 	.toArray();
 
-	const properties = JSON.parse(JSON.stringify(data));
+		const properties = JSON.parse(JSON.stringify(data));
 
-	const filtered = properties.map(
-		(property: {
-			_id: number;
-			data: {
-				letterEqual: string;
-				translatedTextSplitted: string;
-				translationResult: string;
-			};
-		}) => {
-			const letterEqualArray = property.data.letterEqual.split(',');
+		const filtered = properties.map(
+			(property: {
+				_id: number;
+				data: {
+					letterEqual: string;
+					translatedTextSplitted: string;
+					translationResult: string;
+				};
+			}) => {
+				const letterEqualArray = property.data.letterEqual.split(',');
 
-			const letterEqualNumber = letterEqualArray.map((letter: string) => {
-				return parseInt(letter);
-			});
+				const letterEqualNumber = letterEqualArray.map((letter: string) => {
+					return parseInt(letter);
+				});
 
-			const translatedTextSplitted =
-				property.data.translatedTextSplitted.split(',');
+				const translatedTextSplitted =
+					property.data.translatedTextSplitted.split(',');
 
-			return {
-				_id: property._id,
-				letterEqual: letterEqualNumber,
-				translationResult: property.data.translationResult,
-				translatedTextSplitted: translatedTextSplitted,
-			};
-		},
-	);
-
-	return {
-		props: { properties: filtered, cookie },
-	};
+				return {
+					_id: property._id,
+					letterEqual: letterEqualNumber,
+					translationResult: property.data.translationResult,
+					translatedTextSplitted: translatedTextSplitted,
+				};
+			},
+		);
+		return {
+			props: { properties: filtered, cookie },
+		};
+	}
+	{
+		return {
+			props: { cookie: null },
+		};
+	}
 }

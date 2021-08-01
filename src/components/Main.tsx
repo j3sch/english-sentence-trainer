@@ -24,8 +24,10 @@ export function Main() {
 	} = useContext(Context) || {};
 
 	useEffect(() => {
-		for (let i = 0; i < properties.length; i++) {
-			exerciseHistory.push(properties[i]);
+		if (properties !== undefined) {
+			for (let i = 0; i < properties.length; i++) {
+				exerciseHistory.push(properties[i]);
+			}
 		}
 	}, []);
 
