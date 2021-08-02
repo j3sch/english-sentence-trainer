@@ -1,14 +1,19 @@
-export function textEqual(
+export default function textEqual(
 	translatedText: string,
 	translationResult: string,
 ): number[] {
-	let translatedTextWords = removePunction(translatedText).split(' ');
-	let translationResultWords = removePunction(translationResult).split(' ');
+	function removePunction(text: string): string {
+		const textWithoutPunction = text.replace(/[.!?]/g, '');
+		return textWithoutPunction;
+	}
+
+	const translatedTextWords = removePunction(translatedText).split(' ');
+	const translationResultWords = removePunction(translationResult).split(' ');
 	let charArraytranslationResult = [''];
-	let letterEqual: number[] = [];
+	const letterEqual: number[] = [];
 	let translatedTextArray = [''];
 
-	//goes through all the words
+	// goes through all the words
 	for (let i = 0; i < translatedTextWords.length; i++) {
 		if (translationResultWords.length > i) {
 			translatedTextArray = translatedTextWords[i].split('');
@@ -42,15 +47,14 @@ export function textEqual(
 		}
 		letterEqualPosition += translatedTextWords[i].length;
 	}
-	return addRemovedPuntion(translatedText, translationResult, letterEqual);;
+	return addRemovedPuntion(translatedText, translationResult, letterEqual);
 }
 
-function removePunction(text: string): string {
-	let textWithoutPunction = text.replace(/[.!?]/g, '');
-	return textWithoutPunction;
-}
-
-function addRemovedPuntion(translatedText: string, translationResult: string, letterEqual: number[]): number[] {
+function addRemovedPuntion(
+	translatedText: string,
+	translationResult: string,
+	letterEqual: number[],
+): number[] {
 	if (
 		translatedText.charAt(translatedText.length - 1) === '?' ||
 		translatedText.charAt(translatedText.length - 1) === '!' ||

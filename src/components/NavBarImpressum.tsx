@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function NavBarImpressum() {
+export default function NavBarImpressum(): JSX.Element {
 	return (
 		<div>
 			<nav className="bg-black px-4 shadow-xl">

@@ -1,4 +1,4 @@
-export const willFuture: { ger: string; en: string }[] = [
+export default [
 	{
 		ger: 'willFuture',
 		en: 'willFuture',

@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { GoBackBtn } from '~/components/GoBackBtn';
-import { NavBarImpressum } from '~/components/NavBarImpressum';
+import GoBackBtn from '~/components/GoBackBtn';
+import NavBarImpressum from '~/components/NavBarImpressum';
 
-export default function Impressum() {
+export default function Impressum(): JSX.Element {
 	return (
 		<>
 			<NavBarImpressum />

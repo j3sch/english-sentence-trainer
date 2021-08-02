@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const MONGODB_DB = process.env.MONGODB_DB;
+const { MONGODB_URI } = process.env;
+const { MONGODB_DB } = process.env;
 
 if (!MONGODB_URI) {
 	throw new Error(
@@ -26,7 +26,7 @@ if (!cached) {
 	cached = global.mongo = { conn: null, promise: null };
 }
 
-export async function connectToDatabase() {
+export default async function connectToDatabase() {
 	if (cached.conn) {
 		return cached.conn;
 	}

@@ -1,9 +1,9 @@
 interface languagesDropDownItems {
-	name: String;
-	displayNavBar: String;
+	name: string;
+	displayNavBar: string;
 }
 
-export const languagesDropDownItems: languagesDropDownItems[] = [
+export default [
 	{ name: 'English', displayNavBar: 'EN' },
 	{
 		name: 'German',

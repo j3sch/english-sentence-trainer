@@ -1,4 +1,4 @@
-export const simplePastPerfect: { ger: string; en: string }[] = [
+export default [
 	{
 		ger: 'simplePastPerfect',
 		en: 'simplePastPerfect',

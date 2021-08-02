@@ -1,31 +1,31 @@
-import { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import React, { useContext, useCallback } from 'react';
-import { Context } from '~/utils/context';
-import { simplePresent } from '~/data/ger-en/simplePresent';
-import { presentProgressive } from '~/data/ger-en/presentProgressive';
-import { simplePast } from '~/data/ger-en/simplePast';
-import { pastProgressive } from '~/data/ger-en/pastProgressive';
-import { presentPerfectProgressive } from '~/data/ger-en/presentPerfectProgressive';
-import { simplePastPerfect } from '~/data/ger-en/simplePastPerfect';
-import { willFuture } from '~/data/ger-en/willFuture';
-import { goingToFuture } from '~/data/ger-en/goingToFuture';
-import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
-import { pickRandomExercise } from '~/helper/pickRandomExercise';
+
 import nookies from 'nookies';
+import Context from '~/utils/context';
+import pickRandomExercise from '~/helper/pickRandomExercise';
+import simplePresent from '~/data/ger-en/simplePresent';
+import presentProgressive from '~/data/ger-en/presentProgressive';
+import simplePast from '~/data/ger-en/simplePast';
+import pastProgressive from '~/data/ger-en/pastProgressive';
+import presentPerfectProgressive from '~/data/ger-en/presentPerfectProgressive';
+import simplePastPerfect from '~/data/ger-en/simplePastPerfect';
+import willFuture from '~/data/ger-en/willFuture';
+import goingToFuture from '~/data/ger-en/goingToFuture';
+import simplePresentPerfect from '~/data/ger-en/simplePresentPerfect';
 
 interface Props {
 	name: string;
-	dropDownItems: any[];
+	dropDownItems: { name: string; displayNavBar: string }[];
 }
 
-function classNames(...classes: String[]) {
+function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export function DropDown(props: Props) {
-	let { name } = props;
-	let { dropDownItems } = props;
+export default function DropDown(props: Props): JSX.Element {
+	const { name } = props;
+	const { dropDownItems } = props;
 	let currentLanguageMode = '';
 
 	const {
@@ -40,6 +40,13 @@ export function DropDown(props: Props) {
 		setFile,
 		ctx,
 	} = useContext(Context) || {};
+
+	function setCookieCurrentMode(textClicked: string) {
+		nookies.set(ctx, 'SelectedLanguageMode', textClicked, {
+			path: '/',
+			maxAge: 10 * 365 * 24 * 60 * 60,
+		});
+	}
 
 	const handleClick = (textClicked: string) => {
 		switch (name) {
@@ -57,15 +64,8 @@ export function DropDown(props: Props) {
 		}
 	};
 
-	function setCookieCurrentMode(textClicked: string) {
-		nookies.set(ctx, 'SelectedLanguageMode', textClicked, {
-			path: '/',
-			maxAge: 10 * 365 * 24 * 60 * 60,
-		});
-	}
-
 	function pickExercise() {
-		let currentMode = {
+		const currentMode = {
 			Random: pickRandomExercise(),
 			'Simple Present': simplePresent,
 			'Present Progressive': presentProgressive,
@@ -79,10 +79,21 @@ export function DropDown(props: Props) {
 		};
 
 		setFile((currentMode as any)[currentLanguageMode]);
-		let currentFile = (currentMode as any)[currentLanguageMode];
-		let randomNum = Math.floor(Math.random() * currentFile.length);
+		const currentFile = (currentMode as any)[currentLanguageMode];
+		const randomNum = Math.floor(Math.random() * currentFile.length);
 		setTextToTranslate(currentFile[randomNum].ger);
 		setTranslationResult(currentFile[randomNum].en);
+	}
+
+	function displayDropDownName() {
+		switch (name) {
+			case 'Mode':
+				return languageMode;
+			case 'QuestionLanguage':
+				return questionLanguage;
+			case 'AnswerLanguage':
+				return answerLanguage;
+		}
 	}
 
 	return (
@@ -91,11 +102,7 @@ export function DropDown(props: Props) {
 				<>
 					<div>
 						<Menu.Button className="inline-flex leading-tight justify-center w-full shadow-sm px-2 py-2 text-xl font-semibold text-gray-300 focus:outline-none focus:ring-0">
-							{name === 'Mode'
-								? languageMode
-								: name === 'QuestionLanguage'
-								? questionLanguage
-								: answerLanguage}
+							{displayDropDownName()}
 						</Menu.Button>
 					</div>
 
@@ -114,29 +121,37 @@ export function DropDown(props: Props) {
 							className="dropDown origin-top-right text-center absolute w-56 shadow-lg bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"
 						>
 							<div className="py-1">
-								{dropDownItems.map((item: any, index: number) => (
-									<Menu.Item
-										key={index}
-										onClick={() => {
-											handleClick(`${item.displayNavBar}`);
-											pickExercise();
-										}}
-									>
-										{({ active }) => (
-											<a
-												href="#"
-												className={classNames(
-													active
-														? 'bg-gray-100 text-gray-900'
-														: 'text-gray-300',
-													'block px-4 py-2 text-sm',
-												)}
-											>
-												{item.name}
-											</a>
-										)}
-									</Menu.Item>
-								))}
+								{dropDownItems.map(
+									(
+										item: {
+											name: string;
+											displayNavBar: string;
+										},
+										index: number,
+									) => (
+										<Menu.Item
+											key={index}
+											onClick={() => {
+												handleClick(`${item.displayNavBar}`);
+												pickExercise();
+											}}
+										>
+											{({ active }) => (
+												<a
+													href="#"
+													className={classNames(
+														active
+															? 'bg-gray-100 text-gray-900'
+															: 'text-gray-300',
+														'block px-4 py-2 text-sm',
+													)}
+												>
+													{item.name}
+												</a>
+											)}
+										</Menu.Item>
+									),
+								)}
 							</div>
 						</Menu.Items>
 					</Transition>

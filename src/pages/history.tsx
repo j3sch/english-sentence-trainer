@@ -1,6 +1,7 @@
-import { connectToDatabase } from '~/utils/mongodb';
 import nookies from 'nookies';
-import { NavBarImpressum } from '~/components/NavBarImpressum';
+import { GetServerSideProps } from 'next';
+import connectToDatabase from '~/utils/mongodb';
+import NavBarImpressum from '~/components/NavBarImpressum';
 
 interface Props {
 	exerciseHistory: {
@@ -11,7 +12,7 @@ interface Props {
 	}[];
 }
 
-export default function History({ exerciseHistory }: Props) {
+export default function History({ exerciseHistory }: Props): JSX.Element {
 	let counter = 0;
 	return (
 		<>
@@ -42,18 +43,18 @@ export default function History({ exerciseHistory }: Props) {
 									<div className="h-12  w-full p-2 flex items-center justify-center">
 										<p className="py-[0.3rem] border-l-[0.5px] border-gray-600 border-opacity-50 inline" />
 										{historyItem.translatedTextSplitted.map(
-											(translatedChar, i) => {
+											(translatedChar, j) => {
 												translatedChar === ' ' && counter++;
-												return historyItem.letterEqual[i - counter] === 1 ? (
+												return historyItem.letterEqual[j - counter] === 1 ? (
 													<p
-														key={i}
+														key={j}
 														className="py-1 px-px bg-green-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
 													>
 														{translatedChar}
 													</p>
 												) : (
 													<p
-														key={i}
+														key={j}
 														className="py-1 px-px bg-red-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
 													>
 														{translatedChar}
@@ -72,10 +73,10 @@ export default function History({ exerciseHistory }: Props) {
 	);
 }
 
-export async function getServerSideProps(ctx: {}) {
+export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
 	const { db } = await connectToDatabase();
 
-	const cookie = nookies.get(ctx)['Cookie'];
+	const cookie = nookies.get(ctx).Cookie;
 
 	if (cookie !== undefined) {
 		const data = await db
@@ -121,7 +122,7 @@ export async function getServerSideProps(ctx: {}) {
 					letterEqual: letterEqualNumber,
 					textToTranslate: property.data.textToTranslate,
 					translationResult: property.data.translationResult,
-					translatedTextSplitted: translatedTextSplitted,
+					translatedTextSplitted,
 				};
 			},
 		);
@@ -134,4 +135,4 @@ export async function getServerSideProps(ctx: {}) {
 	return {
 		props: { exerciseHistory: null },
 	};
-}
+};

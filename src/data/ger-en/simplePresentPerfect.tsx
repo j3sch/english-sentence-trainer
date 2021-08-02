@@ -1,4 +1,4 @@
-export const simplePresentPerfect: { ger: string; en: string }[] = [
+export default [
 	{
 		ger: 'simplePresentPerfect',
 		en: 'simplePresentPerfect',

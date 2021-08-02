@@ -1,12 +1,33 @@
-import { Main } from '~/components/Main';
-import { NavBar } from '~/components/NavBar';
 import React, { useState } from 'react';
-import { Context } from '~/utils/context';
-import { connectToDatabase } from '~/utils/mongodb';
 import nookies from 'nookies';
-const randomstring = require('randomstring');
+import { GetServerSideProps } from 'next';
+import Main from '~/components/Main';
+import NavBar from '~/components/NavBar';
+import Context from '~/utils/context';
+import connectToDatabase from '~/utils/mongodb';
 
-export default function Home({ properties, cookie, ctx }: any): JSX.Element {
+interface props {
+	properties: {
+		_id: number;
+		letterEqual: number[];
+		textToTranslate: string;
+		translationResult: string;
+		translatedTextSplitted: string[];
+	}[];
+	cookie: string;
+	ctx: {};
+}
+
+export default function Home({ properties, cookie, ctx }: props): JSX.Element {
+	function getCurrentMode() {
+		const cookies = nookies.get(ctx);
+
+		if (cookies.SelectedLanguageMode === undefined) {
+			return 'Random';
+		}
+		return cookies.SelectedLanguageMode;
+	}
+
 	const [languageMode, setLanguageMode] = useState(getCurrentMode());
 	const [questionLanguage, setQuestionLanguage] = useState('Ger');
 	const [answerLanguage, setAnswerLangauge] = useState('En');
@@ -14,16 +35,6 @@ export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 	const [textToTranslate, setTextToTranslate] = useState('');
 	const [translationResult, setTranslationResult] = useState('');
 	const [file, setFile] = useState([{ ger: '', en: '' }]);
-
-	function getCurrentMode() {
-		let cookies = nookies.get(ctx);
-
-		if (cookies['SelectedLanguageMode'] === undefined) {
-			return 'Random';
-		} else {
-			return cookies['SelectedLanguageMode'];
-		}
-	}
 
 	return (
 		<div className="h-full w-full overflow-hidden">
@@ -35,7 +46,7 @@ export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 					setQuestionLanguage,
 					answerLanguage,
 					setAnswerLangauge,
-					//text
+					// text
 					textToTranslate,
 					setTextToTranslate,
 					translationResult,
@@ -54,20 +65,22 @@ export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 	);
 }
 
-export async function getServerSideProps(ctx: {}) {
+export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
+	const randomstring = require('randomstring');
+
 	const { db } = await connectToDatabase();
 	let randomString;
 
-	let cookies = nookies.get(ctx);
+	const cookies = nookies.get(ctx);
 
-	if (cookies['Cookie'] === undefined) {
+	if (cookies.Cookie === undefined) {
 		randomString = randomstring.generate();
 		nookies.set(ctx, 'Cookie', randomString, {
 			path: '/',
 			maxAge: 10 * 365 * 24 * 60 * 60,
 		});
 	}
-	const cookie = cookies['Cookie'];
+	const cookie = cookies.Cookie;
 
 	if (cookie !== undefined) {
 		const data = await db
@@ -113,7 +126,7 @@ export async function getServerSideProps(ctx: {}) {
 					letterEqual: letterEqualNumber,
 					textToTranslate: property.data.textToTranslate,
 					translationResult: property.data.translationResult,
-					translatedTextSplitted: translatedTextSplitted,
+					translatedTextSplitted,
 				};
 			},
 		);
@@ -124,4 +137,4 @@ export async function getServerSideProps(ctx: {}) {
 	return {
 		props: { cookie: randomString },
 	};
-}
+};

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
-import { DropDown } from '~/components/DropDown';
-import { modeDropDownItems } from '~/data/modesDropDownItems';
-import { languagesDropDownItems } from '~/data/languagesDropDownItems';
 import Link from 'next/link';
+import DropDown from '~/components/DropDown';
+import modeDropDownItems from '~/data/modesDropDownItems';
+import languagesDropDownItems from '~/data/languagesDropDownItems';
 
-export function NavBar() {
+export default function NavBar(): JSX.Element {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div>

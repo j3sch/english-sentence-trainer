@@ -1,4 +1,4 @@
-export const pastProgressive: { ger: string; en: string }[] = [
+export default [
 	{
 		ger: 'pastProgressive',
 		en: 'pastProgressive',

@@ -1,5 +1,5 @@
-import { createContext } from 'react';
-import { Dispatch, SetStateAction } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
+
 interface ContextProps {
 	languageMode: string;
 	setLanguageMode: Dispatch<SetStateAction<string>>;
@@ -14,6 +14,7 @@ interface ContextProps {
 	file: { ger: string; en: string }[];
 	setFile: Dispatch<SetStateAction<{ ger: string; en: string }[]>>;
 	properties: {
+		_id: number;
 		letterEqual: number[];
 		textToTranslate: string;
 		translatedTextSplitted: string[];
@@ -23,4 +24,4 @@ interface ContextProps {
 	ctx: {};
 }
 
-export const Context = createContext({} as ContextProps);
+export default createContext({} as ContextProps);

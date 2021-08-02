@@ -1,27 +1,27 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { textEqual } from '~/helper/textEqual';
-import { Context } from '~/utils/context';
-import { pickRandomExercise } from '~/helper/pickRandomExercise';
-import { simplePresent } from '~/data/ger-en/simplePresent';
-import { presentProgressive } from '~/data/ger-en/presentProgressive';
-import { simplePast } from '~/data/ger-en/simplePast';
-import { pastProgressive } from '~/data/ger-en/pastProgressive';
-import { presentPerfectProgressive } from '~/data/ger-en/presentPerfectProgressive';
-import { simplePastPerfect } from '~/data/ger-en/simplePastPerfect';
-import { willFuture } from '~/data/ger-en/willFuture';
-import { goingToFuture } from '~/data/ger-en/goingToFuture';
-import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
-import { ChevronDownIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import textEqual from '~/helper/textEqual';
+import Context from '~/utils/context';
+import pickRandomExercise from '~/helper/pickRandomExercise';
+import simplePresent from '~/data/ger-en/simplePresent';
+import presentProgressive from '~/data/ger-en/presentProgressive';
+import simplePast from '~/data/ger-en/simplePast';
+import pastProgressive from '~/data/ger-en/pastProgressive';
+import presentPerfectProgressive from '~/data/ger-en/presentPerfectProgressive';
+import simplePastPerfect from '~/data/ger-en/simplePastPerfect';
+import willFuture from '~/data/ger-en/willFuture';
+import goingToFuture from '~/data/ger-en/goingToFuture';
+import simplePresentPerfect from '~/data/ger-en/simplePresentPerfect';
 
-let exerciseHistory: {
+const exerciseHistory: {
 	letterEqual: number[];
 	textToTranslate: string;
 	translatedTextSplitted: string[];
 	translationResult: string;
 }[] = [];
 
-export function Main() {
+export default function Main(): JSX.Element {
 	const [translatedText, setTranslatedText] = useState('');
 	const {
 		languageMode,
@@ -34,7 +34,6 @@ export function Main() {
 	} = useContext(Context) || {};
 
 	useEffect(() => {
-		console.log(properties);
 		if (properties !== undefined) {
 			for (let i = 0; i < properties.length; i++) {
 				exerciseHistory.push(properties[i]);
@@ -43,31 +42,7 @@ export function Main() {
 				}
 			}
 		}
-	}, []);
-
-	let counter = 0;
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		counter = 0;
-		if (translatedText.length !== 0) {
-			const translatedTextSplitted = translatedText.split('');
-			let letterEqual = textEqual(translatedText, translationResult);
-			exerciseHistory.unshift({
-				letterEqual,
-				textToTranslate,
-				translationResult,
-				translatedTextSplitted,
-			});
-
-			addExercise(letterEqual, translatedTextSplitted);
-			setTranslatedText('');
-			if (exerciseHistory.length === 2) {
-				exerciseHistory.pop();
-			}
-		}
-		pickExercise();
-	};
+	});
 
 	const addExercise = async (
 		letterEqual: number[],
@@ -76,7 +51,6 @@ export function Main() {
 		const data = await fetch(
 			`http://localhost:3000/api/exercises?letterEqual=${letterEqual}&textToTranslate=${textToTranslate}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
 		);
-		console.log(data.json());
 	};
 
 	function pickExercise() {
@@ -114,10 +88,34 @@ export function Main() {
 				break;
 		}
 
-		let randomNum = Math.floor(Math.random() * file.length);
+		const randomNum = Math.floor(Math.random() * file.length);
 		setTextToTranslate(file[randomNum].ger);
 		setTranslationResult(file[randomNum].en);
 	}
+
+	let counter = 0;
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		counter = 0;
+		if (translatedText.length !== 0) {
+			const translatedTextSplitted = translatedText.split('');
+			const letterEqual = textEqual(translatedText, translationResult);
+			exerciseHistory.unshift({
+				letterEqual,
+				textToTranslate,
+				translationResult,
+				translatedTextSplitted,
+			});
+
+			addExercise(letterEqual, translatedTextSplitted);
+			setTranslatedText('');
+			if (exerciseHistory.length === 2) {
+				exerciseHistory.pop();
+			}
+		}
+		pickExercise();
+	};
 
 	if (textToTranslate === '') {
 		pickExercise();
@@ -151,18 +149,18 @@ export function Main() {
 							</p>
 							<div className="h-12  w-full p-2 flex items-center justify-center">
 								<p className="py-[0.3rem] border-l-[0.5px] border-gray-600 border-opacity-50 inline" />
-								{historyItem.translatedTextSplitted.map((translatedChar, i) => {
+								{historyItem.translatedTextSplitted.map((translatedChar, j) => {
 									translatedChar === ' ' && counter++;
-									return historyItem.letterEqual[i - counter] === 1 ? (
+									return historyItem.letterEqual[j - counter] === 1 ? (
 										<p
-											key={i}
+											key={j}
 											className="py-1 px-px bg-green-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
 										>
 											{translatedChar}
 										</p>
 									) : (
 										<p
-											key={i}
+											key={j}
 											className="py-1 px-px bg-red-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
 										>
 											{translatedChar}

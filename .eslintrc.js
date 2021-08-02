@@ -31,5 +31,9 @@ module.exports = {
 
 		'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
 		'react/jsx-props-no-spreading': 'off', //personal preference
+		'default-case': 'off',
+		'react/button-has-type': 'off',
+		'no-plusplus': 'off',
+		'no-multi-assign': 'off'
 	},
 };

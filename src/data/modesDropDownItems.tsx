@@ -1,9 +1,9 @@
 interface modeDropDownItems {
-	name: String;
-	displayNavBar: String;
+	name: string;
+	displayNavBar: string;
 }
 
-export const modeDropDownItems: modeDropDownItems[] = [
+export default [
 	{
 		name: 'Random',
 		displayNavBar: 'Random',

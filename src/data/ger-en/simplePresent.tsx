@@ -1,4 +1,4 @@
-export const simplePresent: { ger: string; en: string }[] = [
+export default [
 	{
 		ger: 'Aber das ist nicht der letzte Zug, nicht wahr?',
 		en: 'But that is not the last train, right?',
