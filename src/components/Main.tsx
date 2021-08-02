@@ -48,7 +48,7 @@ export default function Main(): JSX.Element {
 		letterEqual: number[],
 		translatedTextSplitted: string[],
 	) => {
-		const data = await fetch(
+		fetch(
 			`http://localhost:3000/api/exercises?letterEqual=${letterEqual}&textToTranslate=${textToTranslate}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
 		);
 	};
