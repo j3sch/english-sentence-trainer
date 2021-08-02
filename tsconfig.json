@@ -18,6 +18,6 @@
 		},
 		"jsx": "preserve"
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/mongodb.jsx", "src/pages/api/exercises.js", "src/pages/index.tsx", "src/components/History.tsx"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/mongodb.js", "src/pages/api/exercises.js", "src/pages/index.tsx", "src/components/History.tsx"],
 	"exclude": ["node_modules"]
 }
