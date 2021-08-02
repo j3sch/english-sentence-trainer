@@ -10,17 +10,19 @@ export function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div>
-			<nav className="bg-black px-4 shadow-xl">
+			<nav className="bg-black px-4 shadow-xl w-full">
 				<div className="flex items-center h-24">
-					<Link href="/">
-						<Image
-							alt="sentence builder logo"
-							src="/images/sentence-builder.svg"
-							width={147}
-							height={49}
-							priority
-						/>
-					</Link>
+					<div className="w-44 mt-1">
+						<Link href="/">
+							<Image
+								alt="sentence builder logo"
+								src="/images/sentence-builder(1).svg"
+								width={147}
+								height={49}
+								priority
+							/>
+						</Link>
+					</div>
 					<div className="hidden md:block w-full">
 						<div className="mx-5 items-center flex">
 							<div className="w-1/6 flex justify-center">

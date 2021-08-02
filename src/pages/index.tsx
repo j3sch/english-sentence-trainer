@@ -5,7 +5,6 @@ import { Context } from '~/utils/context';
 import { connectToDatabase } from '~/utils/mongodb';
 import nookies from 'nookies';
 const randomstring = require('randomstring');
-import Footer from '~/components/Footer';
 
 export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 	const [languageMode, setLanguageMode] = useState(getCurrentMode());
@@ -27,7 +26,7 @@ export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 	}
 
 	return (
-		<div className="h-full w-full">
+		<div className="h-full w-full overflow-hidden">
 			<Context.Provider
 				value={{
 					languageMode,
@@ -50,7 +49,6 @@ export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 			>
 				<NavBar />
 				<Main />
-				<Footer />
 			</Context.Provider>
 		</div>
 	);
@@ -86,7 +84,7 @@ export async function getServerSideProps(ctx: {}) {
 				},
 			])
 			.sort({ _id: -1 })
-			.limit(2)
+			.limit(1)
 			.toArray();
 
 		const properties = JSON.parse(JSON.stringify(data));
@@ -123,9 +121,7 @@ export async function getServerSideProps(ctx: {}) {
 			props: { properties: filtered, cookie },
 		};
 	}
-	{
-		return {
-			props: { cookie: randomString },
-		};
-	}
+	return {
+		props: { cookie: randomString },
+	};
 }

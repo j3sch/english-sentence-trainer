@@ -11,6 +11,8 @@ import { simplePastPerfect } from '~/data/ger-en/simplePastPerfect';
 import { willFuture } from '~/data/ger-en/willFuture';
 import { goingToFuture } from '~/data/ger-en/goingToFuture';
 import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
+import { ChevronDownIcon } from '@heroicons/react/outline';
+import Link from 'next/link';
 
 let exerciseHistory: {
 	letterEqual: number[];
@@ -36,7 +38,7 @@ export function Main() {
 		if (properties !== undefined) {
 			for (let i = 0; i < properties.length; i++) {
 				exerciseHistory.push(properties[i]);
-				if (exerciseHistory.length === 3) {
+				if (exerciseHistory.length === 2) {
 					exerciseHistory.pop();
 				}
 			}
@@ -60,7 +62,7 @@ export function Main() {
 
 			addExercise(letterEqual, translatedTextSplitted);
 			setTranslatedText('');
-			if (exerciseHistory.length === 3) {
+			if (exerciseHistory.length === 2) {
 				exerciseHistory.pop();
 			}
 		}
@@ -125,13 +127,13 @@ export function Main() {
 			<p className="h-1/4 flex items-center justify-center  text-4xl text-center">
 				{textToTranslate}
 			</p>
-			<form className="w-3/4 mb-20" onSubmit={handleSubmit}>
+			<form className="w-3/4 mb-24" onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Enter the translation"
 					value={translatedText}
 					onChange={(e) => setTranslatedText(e.target.value)}
-					className="h-24 w-full text-2xl text-center rounded-lg  bg-[#706CF9]"
+					className="h-24 w-full text-2xl text-center rounded-lg text-white bg-[#706CF9]"
 				/>
 			</form>
 			{exerciseHistory.map((historyItem, i) => {
@@ -172,6 +174,9 @@ export function Main() {
 					)
 				);
 			})}
+			<Link href="/history">
+				<ChevronDownIcon className="h-12 w-12 text-white m-6" />
+			</Link>
 		</div>
 	);
 }

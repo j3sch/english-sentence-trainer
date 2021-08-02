@@ -1,12 +1,13 @@
 import Image from 'next/image';
-import Footer from '~/components/Footer';
+import { GoBackBtn } from '~/components/GoBackBtn';
 import { NavBarImpressum } from '~/components/NavBarImpressum';
+
 export default function Impressum() {
 	return (
 		<>
 			<NavBarImpressum />
-			<div className="max-w-7xl h-full bg-[#212123] flex justify-center">
-				<div className="p-20">
+			<div className="max-w-7xl h-full bg-[#212123] flex flex-col items-center">
+				<div className="mt-20">
 					<Image
 						alt="Impressum"
 						src="/images/ImpressumDark.svg"
@@ -15,8 +16,8 @@ export default function Impressum() {
 						priority
 					/>
 				</div>
+				<GoBackBtn />
 			</div>
-			<Footer />
 		</>
 	);
 }
