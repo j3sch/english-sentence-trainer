@@ -15,6 +15,7 @@ interface ContextProps {
 	setFile: Dispatch<SetStateAction<{ ger: string; en: string }[]>>;
 	properties: {
 		letterEqual: number[];
+		textToTranslate: string;
 		translatedTextSplitted: string[];
 		translationResult: string;
 	}[];

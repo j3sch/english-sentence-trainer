@@ -14,6 +14,7 @@ import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
 
 let exerciseHistory: {
 	letterEqual: number[];
+	textToTranslate: string;
 	translatedTextSplitted: string[];
 	translationResult: string;
 }[] = [];
@@ -35,6 +36,9 @@ export function Main() {
 		if (properties !== undefined) {
 			for (let i = 0; i < properties.length; i++) {
 				exerciseHistory.push(properties[i]);
+				if (exerciseHistory.length === 3) {
+					exerciseHistory.pop();
+				}
 			}
 		}
 	}, []);
@@ -49,13 +53,14 @@ export function Main() {
 			let letterEqual = textEqual(translatedText, translationResult);
 			exerciseHistory.unshift({
 				letterEqual,
+				textToTranslate,
 				translationResult,
 				translatedTextSplitted,
 			});
 
 			addExercise(letterEqual, translatedTextSplitted);
 			setTranslatedText('');
-			if (exerciseHistory.length === 4) {
+			if (exerciseHistory.length === 3) {
 				exerciseHistory.pop();
 			}
 		}
@@ -67,7 +72,7 @@ export function Main() {
 		translatedTextSplitted: string[],
 	) => {
 		const data = await fetch(
-			`http://localhost:3000/api/exercises?letterEqual=${letterEqual}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
+			`http://localhost:3000/api/exercises?letterEqual=${letterEqual}&textToTranslate=${textToTranslate}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
 		);
 		console.log(data.json());
 	};
@@ -136,10 +141,13 @@ export function Main() {
 							key={i}
 							className="border-2 w-3/4 border-gray-600 text-center text-xl flex flex-col justify-center items-center m-1"
 						>
-							<p className="h-12 pt-3 border-b-2 border-gray-600 w-full border-opacity-30 bg-green-600 bg-opacity-30">
+							<p className="h-12 p-2 border-b-2 border-gray-600 w-full border-opacity-30">
+								{historyItem.textToTranslate}
+							</p>
+							<p className="h-12 p-2 border-b-2 border-gray-600 w-full border-opacity-30 bg-green-600 bg-opacity-30">
 								{historyItem.translationResult}
 							</p>
-							<div className="h-12  w-full p-3">
+							<div className="h-12  w-full p-2 flex items-center justify-center">
 								<p className="py-[0.3rem] border-l-[0.5px] border-gray-600 border-opacity-50 inline" />
 								{historyItem.translatedTextSplitted.map((translatedChar, i) => {
 									translatedChar === ' ' && counter++;

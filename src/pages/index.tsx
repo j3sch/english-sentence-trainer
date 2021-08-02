@@ -5,6 +5,7 @@ import { Context } from '~/utils/context';
 import { connectToDatabase } from '~/utils/mongodb';
 import nookies from 'nookies';
 const randomstring = require('randomstring');
+import Footer from '~/components/Footer';
 
 export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 	const [languageMode, setLanguageMode] = useState(getCurrentMode());
@@ -49,6 +50,7 @@ export default function Home({ properties, cookie, ctx }: any): JSX.Element {
 			>
 				<NavBar />
 				<Main />
+				<Footer />
 			</Context.Provider>
 		</div>
 	);
@@ -84,7 +86,7 @@ export async function getServerSideProps(ctx: {}) {
 				},
 			])
 			.sort({ _id: -1 })
-			.limit(3)
+			.limit(2)
 			.toArray();
 
 		const properties = JSON.parse(JSON.stringify(data));
@@ -94,6 +96,7 @@ export async function getServerSideProps(ctx: {}) {
 				_id: number;
 				data: {
 					letterEqual: string;
+					textToTranslate: string;
 					translatedTextSplitted: string;
 					translationResult: string;
 				};
@@ -110,6 +113,7 @@ export async function getServerSideProps(ctx: {}) {
 				return {
 					_id: property._id,
 					letterEqual: letterEqualNumber,
+					textToTranslate: property.data.textToTranslate,
 					translationResult: property.data.translationResult,
 					translatedTextSplitted: translatedTextSplitted,
 				};

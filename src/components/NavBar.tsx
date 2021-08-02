@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { DropDown } from '~/components/DropDown';
 import { modeDropDownItems } from '~/data/modesDropDownItems';
 import { languagesDropDownItems } from '~/data/languagesDropDownItems';
+import Link from 'next/link';
 
 export function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -11,13 +12,15 @@ export function NavBar() {
 		<div>
 			<nav className="bg-black px-4 shadow-xl">
 				<div className="flex items-center h-24">
-					<Image
-						alt="sentence builder logo"
-						src="/images/sentence-builder.svg"
-						width={147}
-						height={49}
-						priority
-					/>
+					<Link href="/">
+						<Image
+							alt="sentence builder logo"
+							src="/images/sentence-builder.svg"
+							width={147}
+							height={49}
+							priority
+						/>
+					</Link>
 					<div className="hidden md:block w-full">
 						<div className="mx-5 items-center flex">
 							<div className="w-1/6 flex justify-center">
