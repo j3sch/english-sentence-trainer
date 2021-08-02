@@ -34,6 +34,7 @@ module.exports = {
 		'default-case': 'off',
 		'react/button-has-type': 'off',
 		'no-plusplus': 'off',
-		'no-multi-assign': 'off'
+		'no-multi-assign': 'off',
+		'consistent-return': 'off',
 	},
 };

@@ -1,8 +1,3 @@
-interface languagesDropDownItems {
-	name: string;
-	displayNavBar: string;
-}
-
 export default [
 	{ name: 'English', displayNavBar: 'EN' },
 	{

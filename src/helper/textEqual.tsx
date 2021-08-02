@@ -7,6 +7,28 @@ export default function textEqual(
 		return textWithoutPunction;
 	}
 
+	function addRemovedPuntion(
+		translatedText: string,
+		translationResult: string,
+		letterEqual: number[],
+	): number[] {
+		if (
+			translatedText.charAt(translatedText.length - 1) === '?' ||
+			translatedText.charAt(translatedText.length - 1) === '!' ||
+			translatedText.charAt(translatedText.length - 1) === '.'
+		) {
+			if (
+				translatedText.charAt(translatedText.length - 1) ===
+				translationResult.charAt(translationResult.length - 1)
+			) {
+				letterEqual.push(1);
+			} else {
+				letterEqual.push(0);
+			}
+		}
+		return letterEqual;
+	}
+
 	const translatedTextWords = removePunction(translatedText).split(' ');
 	const translationResultWords = removePunction(translationResult).split(' ');
 	let charArraytranslationResult = [''];
@@ -48,26 +70,4 @@ export default function textEqual(
 		letterEqualPosition += translatedTextWords[i].length;
 	}
 	return addRemovedPuntion(translatedText, translationResult, letterEqual);
-}
-
-function addRemovedPuntion(
-	translatedText: string,
-	translationResult: string,
-	letterEqual: number[],
-): number[] {
-	if (
-		translatedText.charAt(translatedText.length - 1) === '?' ||
-		translatedText.charAt(translatedText.length - 1) === '!' ||
-		translatedText.charAt(translatedText.length - 1) === '.'
-	) {
-		if (
-			translatedText.charAt(translatedText.length - 1) ===
-			translationResult.charAt(translationResult.length - 1)
-		) {
-			letterEqual.push(1);
-		} else {
-			letterEqual.push(0);
-		}
-	}
-	return letterEqual;
 }

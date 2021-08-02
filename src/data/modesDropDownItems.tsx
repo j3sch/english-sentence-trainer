@@ -1,8 +1,3 @@
-interface modeDropDownItems {
-	name: string;
-	displayNavBar: string;
-}
-
 export default [
 	{
 		name: 'Random',
