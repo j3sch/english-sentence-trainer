@@ -2,6 +2,7 @@ import nookies from 'nookies';
 import { GetServerSideProps } from 'next';
 import connectToDatabase from '~/utils/mongodb';
 import NavBarImpressum from '~/components/NavBarImpressum';
+import GoBackBtn from '~/components/GoBackBtn';
 
 interface Props {
 	exerciseHistory: {
@@ -68,6 +69,9 @@ export default function History({ exerciseHistory }: Props): JSX.Element {
 						);
 					},
 				)}
+				<div className="mt-8 mb-4">
+					<GoBackBtn />
+				</div>
 			</div>
 		</>
 	);
