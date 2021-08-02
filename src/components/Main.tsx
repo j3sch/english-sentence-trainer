@@ -2,6 +2,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import { textEqual } from '~/helper/textEqual';
 import { Context } from '~/utils/context';
 import { pickRandomExercise } from '~/helper/pickRandomExercise';
+import { simplePresent } from '~/data/ger-en/simplePresent';
+import { presentProgressive } from '~/data/ger-en/presentProgressive';
+import { simplePast } from '~/data/ger-en/simplePast';
+import { pastProgressive } from '~/data/ger-en/pastProgressive';
+import { presentPerfectProgressive } from '~/data/ger-en/presentPerfectProgressive';
+import { simplePastPerfect } from '~/data/ger-en/simplePastPerfect';
+import { willFuture } from '~/data/ger-en/willFuture';
+import { goingToFuture } from '~/data/ger-en/goingToFuture';
+import { simplePresentPerfect } from '~/data/ger-en/simplePresentPerfect';
 
 let exerciseHistory: {
 	letterEqual: number[];
@@ -17,8 +26,6 @@ export function Main() {
 		setTextToTranslate,
 		translationResult,
 		setTranslationResult,
-		file,
-		setFile,
 		properties,
 		cookie,
 	} = useContext(Context) || {};
@@ -66,9 +73,38 @@ export function Main() {
 	};
 
 	function pickExercise() {
-		if (languageMode === 'Random') {
-			setFile(pickRandomExercise());
-			//TODO 
+		let file: { ger: string; en: string }[] = [{ ger: '', en: '' }];
+		switch (languageMode) {
+			case 'Random':
+				file = pickRandomExercise();
+				break;
+			case 'Simple Present':
+				file = simplePresent;
+				break;
+			case 'Present Progressive':
+				file = presentProgressive;
+				break;
+			case 'Simple Past':
+				file = simplePast;
+				break;
+			case 'Past Progressive':
+				file = pastProgressive;
+				break;
+			case 'Simple Present Perfect':
+				file = simplePresentPerfect;
+				break;
+			case 'Present Perfect Progressive':
+				file = presentPerfectProgressive;
+				break;
+			case 'Simple Past Perfect':
+				file = simplePastPerfect;
+				break;
+			case 'will-future':
+				file = willFuture;
+				break;
+			case 'going to-future':
+				file = goingToFuture;
+				break;
 		}
 
 		let randomNum = Math.floor(Math.random() * file.length);
