@@ -41,7 +41,7 @@ export default function History({ exerciseHistory }: Props): JSX.Element {
 									<p className="h-12 p-2 border-b-2 border-gray-600 w-full border-opacity-30 bg-green-600 bg-opacity-30">
 										{historyItem.translationResult}
 									</p>
-									<div className="h-10  w-full p-2 flex items-center justify-center">
+									<div className="h-12  w-full p-2 flex items-center justify-center">
 										<p className="h-10 py-[0.3rem] border-l-[0.5px] border-gray-600 border-opacity-50 inline" />
 										{historyItem.translatedTextSplitted.map(
 											(translatedChar, j) => {
