@@ -14,6 +14,7 @@ export default function NavBarImpressum(): JSX.Element {
 								width={147}
 								height={49}
 								priority
+								className="cursor-pointer"
 							/>
 						</Link>
 					</div>

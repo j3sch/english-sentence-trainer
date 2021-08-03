@@ -20,6 +20,7 @@ export default function NavBar(): JSX.Element {
 								width={147}
 								height={49}
 								priority
+								className="cursor-pointer"
 							/>
 						</Link>
 					</div>
