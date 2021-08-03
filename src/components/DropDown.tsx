@@ -95,7 +95,7 @@ export default function DropDown(props: Props): JSX.Element {
 			{({ open }) => (
 				<>
 					<div>
-						<Menu.Button className="inline-flex leading-tight justify-center w-full shadow-sm px-2 py-2 text-xl font-semibold text-gray-300 focus:outline-none focus:ring-0">
+						<Menu.Button className="inline-flex leading-tight justify-center w-full shadow-sm px-2 py-2 text-2xl text-gray-300 focus:outline-none focus:ring-0">
 							{displayDropDownName()}
 						</Menu.Button>
 					</div>
