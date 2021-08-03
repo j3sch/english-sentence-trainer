@@ -1,0 +1,40 @@
+[33mb676194[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fetch description
+[33m2cbd97b[m status ok
+[33maaea38a[m fetch added methode descriptions
+[33mf8fda40[m cors for exercise
+[33m5d5e0f7[m exercise api
+[33m3df9087[m cors
+[33m03b928b[m cors
+[33m9c69a24[m cors settings implemented
+[33m96c7142[m cimport in api exercises
+[33m6abef2e[m api exercises added again
+[33m957b4af[m removed variable data by fetch
+[33m339f69b[m linter warnings
+[33m6e5b56b[m go back button in history implemented and small improvements
+[33mdcf3254[m mongodb.jsx to mongodb.js
+[33mc43c529[m eslint errors and warnings
+[33m2dd65df[m history page implemented
+[33m03d77cd[m impressum added
+[33m296bedd[m all language mods implemented in pickExercise
+[33m9de3c0b[m Cookie for the selected dropdown mode
+[33mb9e991a[m cookie updated
+[33m06fa2d1[m implemented cookie
+[33m3180d95[m generating cookie and sent to db
+[33m683d6cf[m changed types of properties
+[33m1b753fc[m implemented mongoDb
+[33mfbb165c[m fixed drop down to show current selected mode and started adding  backend
+[33ma2c9a77[m dropDown functionality finished with hooks, but it use previous state of selected menu item
+[33m2ada5fa[m dropDown functionality finished with hooks, but it use previous state of selected menu item
+[33mcb7d804[m save current state of drop down
+[33m2143342[m removed punctuation for comparison at the beginning and added it again at the end
+[33m77c5a2f[m next config added
+[33maf3a18d[m eslint-config-next
+[33m24bfaaf[m updated dependencies
+[33m9c68fa7[m updated function to compare text
+[33mf53bd56[m result letter is green or red depending on answer right
+[33m83c2117[m result ui updated
+[33m76cd562[m show result strings
+[33m0105e1b[m text to translate and input field added
+[33m38254b2[m text center mode line height
+[33m115677c[m drop down center and fixed position language
+[33m77011ec[m Initial commit

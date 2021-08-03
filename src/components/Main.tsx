@@ -49,7 +49,7 @@ export default function Main(): JSX.Element {
 		translatedTextSplitted: string[],
 	) => {
 		fetch(
-			`http://localhost:3000/api/exercises?letterEqual=${letterEqual}&textToTranslate=${textToTranslate}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
+			`https://english-sentence-trainer.vercel.app/api/exercises?letterEqual=${letterEqual}&textToTranslate=${textToTranslate}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
 		);
 	};
 
