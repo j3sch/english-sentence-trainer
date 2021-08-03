@@ -130,14 +130,14 @@ export default function Main(): JSX.Element {
 									return historyItem.letterEqual[j - counter] === 1 ? (
 										<p
 											key={j}
-											className="py-1 px-px bg-green-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
+											className="h-12 py-1 px-px bg-green-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
 										>
 											{translatedChar}
 										</p>
 									) : (
 										<p
 											key={j}
-											className="py-1 px-px bg-red-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
+											className="h-12 py-1 px-px bg-red-600 border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] border-gray-600 border-opacity-50 bg-opacity-30 inline"
 										>
 											{translatedChar}
 										</p>
