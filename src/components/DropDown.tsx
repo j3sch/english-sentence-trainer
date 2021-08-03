@@ -4,15 +4,12 @@ import { Menu, Transition } from '@headlessui/react';
 import nookies from 'nookies';
 import Context from '~/utils/context';
 import pickRandomExercise from '~/helper/pickRandomExercise';
-import simplePresent from '~/data/ger-en/simplePresent';
-import presentProgressive from '~/data/ger-en/presentProgressive';
-import simplePast from '~/data/ger-en/simplePast';
-import pastProgressive from '~/data/ger-en/pastProgressive';
-import presentPerfectProgressive from '~/data/ger-en/presentPerfectProgressive';
-import simplePastPerfect from '~/data/ger-en/simplePastPerfect';
-import willFuture from '~/data/ger-en/willFuture';
-import goingToFuture from '~/data/ger-en/goingToFuture';
-import simplePresentPerfect from '~/data/ger-en/simplePresentPerfect';
+import present from '~/data/ger-en/present';
+import presentPerfect from '~/data/ger-en/presentPerfect';
+import past from '~/data/ger-en/past';
+import pastPerfect from '~/data/ger-en/pastPerfect';
+import futurePerfect from '~/data/ger-en/futurePerfect';
+import future from '~/data/ger-en/future';
 
 interface Props {
 	name: string;
@@ -67,15 +64,12 @@ export default function DropDown(props: Props): JSX.Element {
 	function pickExercise() {
 		const currentMode = {
 			Random: pickRandomExercise(),
-			'Simple Present': simplePresent,
-			'Present Progressive': presentProgressive,
-			'Simple Past': simplePast,
-			'Past Progressive': pastProgressive,
-			'Simple Present Perfect': simplePresentPerfect,
-			'Present Perfect Progressive': presentPerfectProgressive,
-			'Simple Past Perfect': simplePastPerfect,
-			'will-future': willFuture,
-			'going to-future': goingToFuture,
+			Present: present,
+			'Present Perfect': presentPerfect,
+			Past: past,
+			'Past Perfect': pastPerfect,
+			Future: future,
+			'Future Perfect': futurePerfect,
 		};
 
 		setFile((currentMode as any)[currentLanguageMode]);

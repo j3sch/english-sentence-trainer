@@ -1,24 +1,18 @@
-import simplePresent from '~/data/ger-en/simplePresent';
-import presentProgressive from '~/data/ger-en/presentProgressive';
-import simplePast from '~/data/ger-en/simplePast';
-import pastProgressive from '~/data/ger-en/pastProgressive';
-import presentPerfectProgressive from '~/data/ger-en/presentPerfectProgressive';
-import simplePastPerfect from '~/data/ger-en/simplePastPerfect';
-import willFuture from '~/data/ger-en/willFuture';
-import goingToFuture from '~/data/ger-en/goingToFuture';
-import simplePresentPerfect from '~/data/ger-en/simplePresentPerfect';
+import present from '~/data/ger-en/present';
+import presentPerfect from '~/data/ger-en/presentPerfect';
+import past from '~/data/ger-en/past';
+import pastPerfect from '~/data/ger-en/pastPerfect';
+import futurePerfect from '~/data/ger-en/futurePerfect';
+import future from '~/data/ger-en/future';
 
 export default function pickRandomExercise(): { ger: string; en: string }[] {
 	const pickExerciseCategory = [
-		simplePresent,
-		presentProgressive,
-		simplePast,
-		pastProgressive,
-		simplePresentPerfect,
-		presentPerfectProgressive,
-		simplePastPerfect,
-		willFuture,
-		goingToFuture,
+		present,
+		presentPerfect,
+		past,
+		pastPerfect,
+		futurePerfect,
+		future,
 	];
 
 	return pickExerciseCategory[

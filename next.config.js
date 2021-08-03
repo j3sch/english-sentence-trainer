@@ -7,7 +7,6 @@ module.exports = {
 	async headers() {
 		return [
 			{
-				// matching all API routes
 				source: '/api/exercises',
 				headers: [
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },

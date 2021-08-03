@@ -4,15 +4,12 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 import textEqual from '~/helper/textEqual';
 import Context from '~/utils/context';
 import pickRandomExercise from '~/helper/pickRandomExercise';
-import simplePresent from '~/data/ger-en/simplePresent';
-import presentProgressive from '~/data/ger-en/presentProgressive';
-import simplePast from '~/data/ger-en/simplePast';
-import pastProgressive from '~/data/ger-en/pastProgressive';
-import presentPerfectProgressive from '~/data/ger-en/presentPerfectProgressive';
-import simplePastPerfect from '~/data/ger-en/simplePastPerfect';
-import willFuture from '~/data/ger-en/willFuture';
-import goingToFuture from '~/data/ger-en/goingToFuture';
-import simplePresentPerfect from '~/data/ger-en/simplePresentPerfect';
+import present from '~/data/ger-en/present';
+import presentPerfect from '~/data/ger-en/presentPerfect';
+import past from '~/data/ger-en/past';
+import pastPerfect from '~/data/ger-en/pastPerfect';
+import futurePerfect from '~/data/ger-en/futurePerfect';
+import future from '~/data/ger-en/future';
 
 const exerciseHistory: {
 	letterEqual: number[];
@@ -59,32 +56,23 @@ export default function Main(): JSX.Element {
 			case 'Random':
 				file = pickRandomExercise();
 				break;
-			case 'Simple Present':
-				file = simplePresent;
+			case 'Present':
+				file = present;
 				break;
-			case 'Present Progressive':
-				file = presentProgressive;
+			case 'Present Perfect':
+				file = presentPerfect;
 				break;
-			case 'Simple Past':
-				file = simplePast;
+			case 'Past':
+				file = past;
 				break;
-			case 'Past Progressive':
-				file = pastProgressive;
+			case 'Past Perfect':
+				file = pastPerfect;
 				break;
-			case 'Simple Present Perfect':
-				file = simplePresentPerfect;
+			case 'Future':
+				file = future;
 				break;
-			case 'Present Perfect Progressive':
-				file = presentPerfectProgressive;
-				break;
-			case 'Simple Past Perfect':
-				file = simplePastPerfect;
-				break;
-			case 'will-future':
-				file = willFuture;
-				break;
-			case 'going to-future':
-				file = goingToFuture;
+			case 'Future Perfect':
+				file = futurePerfect;
 				break;
 		}
 

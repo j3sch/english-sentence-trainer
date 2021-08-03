@@ -4,39 +4,27 @@ export default [
 		displayNavBar: 'Random',
 	},
 	{
-		name: 'Simple Present',
-		displayNavBar: 'Simple Present',
+		name: 'Present',
+		displayNavBar: 'Present',
 	},
 	{
-		name: 'Present Progressive',
-		displayNavBar: 'Present Progressive',
+		name: 'Present Perfect',
+		displayNavBar: 'Present Perfect',
 	},
 	{
-		name: 'Simple Past',
-		displayNavBar: 'Simple Past',
+		name: 'Past',
+		displayNavBar: 'Past',
 	},
 	{
-		name: 'Past Progressive',
-		displayNavBar: 'Past Progressive',
+		name: 'Past Perfect',
+		displayNavBar: 'Past Perfect',
 	},
 	{
-		name: 'Simple Present Perfect',
-		displayNavBar: 'Simple Present Perfect',
+		name: 'Future',
+		displayNavBar: 'Future',
 	},
 	{
-		name: 'Present Perfect Progressive',
-		displayNavBar: 'Present Perfect Progressive',
-	},
-	{
-		name: 'Simple Past Perfect',
-		displayNavBar: 'Simple Past Perfect',
-	},
-	{
-		name: 'will-future',
-		displayNavBar: 'will-future',
-	},
-	{
-		name: 'going to-future',
-		displayNavBar: 'going to-future',
+		name: 'Future Perfect',
+		displayNavBar: 'Future Perfect',
 	},
 ];
