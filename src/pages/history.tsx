@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import connectToDatabase from '~/utils/mongodb';
 import NavBarImpressum from '~/components/NavBarImpressum';
 import GoBackBtn from '~/components/GoBackBtn';
-
+import Footer from '~/components/Footer';
 interface Props {
 	exerciseHistory: {
 		letterEqual: number[];
@@ -18,7 +18,7 @@ export default function History({ exerciseHistory }: Props): JSX.Element {
 	return (
 		<>
 			<NavBarImpressum />
-			<div className="flex flex-col min-h-[85%] items-center bg-[#212123] text-gray-300 w-full pt-10 pb-28">
+			<div className="flex flex-col min-h-[85%] items-center bg-[#212123] text-gray-300 w-full pt-10 pb-10">
 				{exerciseHistory.map(
 					(
 						historyItem: {
@@ -69,10 +69,11 @@ export default function History({ exerciseHistory }: Props): JSX.Element {
 						);
 					},
 				)}
-				<div className="mt-8 mb-4">
+				<div className="mt-8">
 					<GoBackBtn />
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 }

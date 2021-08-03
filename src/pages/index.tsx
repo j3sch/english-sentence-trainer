@@ -5,7 +5,7 @@ import Main from '~/components/Main';
 import NavBar from '~/components/NavBar';
 import Context from '~/utils/context';
 import connectToDatabase from '~/utils/mongodb';
-
+import Footer from '~/components/Footer';
 interface props {
 	properties: {
 		_id: number;
@@ -60,6 +60,9 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 			>
 				<NavBar />
 				<Main />
+				<div className="fixed bottom-0  w-full max-w-7xl">
+					<Footer />
+				</div>
 			</Context.Provider>
 		</div>
 	);

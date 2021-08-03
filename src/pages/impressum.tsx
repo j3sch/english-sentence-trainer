@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import GoBackBtn from '~/components/GoBackBtn';
 import NavBarImpressum from '~/components/NavBarImpressum';
+import Footer from '~/components/Footer';
 
 export default function Impressum(): JSX.Element {
 	return (
@@ -19,6 +20,9 @@ export default function Impressum(): JSX.Element {
 				<div className="absolute bottom-32">
 					<GoBackBtn />
 				</div>
+			</div>
+			<div className="fixed bottom-0  w-full max-w-7xl">
+				<Footer />
 			</div>
 		</>
 	);
