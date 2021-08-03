@@ -172,9 +172,11 @@ export default function Main(): JSX.Element {
 					)
 				);
 			})}
-			<Link href="/history">
-				<ChevronDownIcon className="h-12 w-12 text-white m-6" />
-			</Link>
+			{exerciseHistory.length !== 0 && (
+				<Link href="/history">
+					<ChevronDownIcon className="h-12 w-12 text-white m-6" />
+				</Link>
+			)}
 		</div>
 	);
 }
