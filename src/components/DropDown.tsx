@@ -5,10 +5,7 @@ import nookies from 'nookies';
 import Context from '~/utils/context';
 import pickRandomExercise from '~/helper/pickRandomExercise';
 import present from '~/data/ger-en/present';
-import presentPerfect from '~/data/ger-en/presentPerfect';
 import past from '~/data/ger-en/past';
-import pastPerfect from '~/data/ger-en/pastPerfect';
-import futurePerfect from '~/data/ger-en/futurePerfect';
 import future from '~/data/ger-en/future';
 
 interface Props {
@@ -65,11 +62,8 @@ export default function DropDown(props: Props): JSX.Element {
 		const currentMode = {
 			Random: pickRandomExercise(),
 			Present: present,
-			'Present Perfect': presentPerfect,
 			Past: past,
-			'Past Perfect': pastPerfect,
 			Future: future,
-			'Future Perfect': futurePerfect,
 		};
 
 		setFile((currentMode as any)[currentLanguageMode]);

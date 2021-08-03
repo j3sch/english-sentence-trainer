@@ -5,10 +5,7 @@ import textEqual from '~/helper/textEqual';
 import Context from '~/utils/context';
 import pickRandomExercise from '~/helper/pickRandomExercise';
 import present from '~/data/ger-en/present';
-import presentPerfect from '~/data/ger-en/presentPerfect';
 import past from '~/data/ger-en/past';
-import pastPerfect from '~/data/ger-en/pastPerfect';
-import futurePerfect from '~/data/ger-en/futurePerfect';
 import future from '~/data/ger-en/future';
 
 const exerciseHistory: {
@@ -59,20 +56,11 @@ export default function Main(): JSX.Element {
 			case 'Present':
 				file = present;
 				break;
-			case 'Present Perfect':
-				file = presentPerfect;
-				break;
 			case 'Past':
 				file = past;
 				break;
-			case 'Past Perfect':
-				file = pastPerfect;
-				break;
 			case 'Future':
 				file = future;
-				break;
-			case 'Future Perfect':
-				file = futurePerfect;
 				break;
 		}
 
