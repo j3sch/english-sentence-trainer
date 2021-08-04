@@ -283,8 +283,4 @@ export default [
 		ger: ``,
 		en: ``,
 	},
-	{
-		ger: ``,
-		en: ``,
-	},
 ];

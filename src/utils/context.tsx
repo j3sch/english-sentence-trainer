@@ -22,6 +22,8 @@ interface ContextProps {
 	}[];
 	cookie: string;
 	ctx: {};
+	setSwitchLanguage: Dispatch<SetStateAction<boolean>>;
+	switchLanguage: boolean;
 }
 
 export default createContext({} as ContextProps);

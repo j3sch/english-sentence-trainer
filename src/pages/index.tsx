@@ -29,8 +29,9 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 	}
 
 	const [languageMode, setLanguageMode] = useState(getCurrentMode());
-	const [questionLanguage, setQuestionLanguage] = useState('Ger');
-	const [answerLanguage, setAnswerLangauge] = useState('En');
+	const [questionLanguage, setQuestionLanguage] = useState('GER');
+	const [answerLanguage, setAnswerLangauge] = useState('EN');
+	const [switchLanguage, setSwitchLanguage] = useState(false);
 
 	const [textToTranslate, setTextToTranslate] = useState('');
 	const [translationResult, setTranslationResult] = useState('');
@@ -46,7 +47,6 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 					setQuestionLanguage,
 					answerLanguage,
 					setAnswerLangauge,
-					// text
 					textToTranslate,
 					setTextToTranslate,
 					translationResult,
@@ -56,6 +56,8 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 					properties,
 					cookie,
 					ctx,
+					setSwitchLanguage,
+					switchLanguage,
 				}}
 			>
 				<NavBar />

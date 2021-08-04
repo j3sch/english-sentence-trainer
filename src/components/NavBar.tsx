@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import DropDown from '~/components/DropDown';
 import modeDropDownItems from '~/data/modesDropDownItems';
 import languagesDropDownItems from '~/data/languagesDropDownItems';
+import Context from '~/utils/context';
 
 export default function NavBar(): JSX.Element {
 	const [isOpen, setIsOpen] = useState(false);
 	const [questionLanguage, setQuestionLanguage] = useState('firstDropDown');
 	const [answerLanguage, setAnswerLanguage] = useState('secondDropDown');
 
+	const { setSwitchLanguage, switchLanguage } = useContext(Context) || {};
+
 	function switchLanguages() {
 		const dropDownValue = questionLanguage;
 		setQuestionLanguage(answerLanguage);
 		setAnswerLanguage(dropDownValue);
+
+		if (switchLanguage) {
+			setSwitchLanguage(false);
+		} else {
+			setSwitchLanguage(true);
+		}
 	}
+
 	return (
 		<div>
 			<nav className="bg-black px-4 shadow-xl w-full">
@@ -37,11 +47,13 @@ export default function NavBar(): JSX.Element {
 							<div className="w-1/6 flex justify-center">
 								<DropDown name="Mode" dropDownItems={modeDropDownItems} />
 							</div>
-							<div className="flex items-center relative content-around">
-								<DropDown
-									name={questionLanguage}
-									dropDownItems={languagesDropDownItems}
-								/>
+							<div className="flex items-center relative w-2/3">
+								<div className="transform origin-right">
+									<DropDown
+										name={questionLanguage}
+										dropDownItems={languagesDropDownItems}
+									/>
+								</div>
 								<button
 									onClick={switchLanguages}
 									className=" absolute left-[3.7rem]"

@@ -256,24 +256,28 @@ export default [
 		en: `Do you think we should abandon ship?`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Die Dinge sind manchmal schöner, wenn man sie von einer anderen Seite betrachtet.`,
+		en: `Sometimes, things are more beautiful when you look at them from a different angle.`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Die einzige Frage besteht nun darin, wie wir nach Hause kommen wollen.`,
+		en: `The only question now is how we're going to get home.`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Die Frage ist, ob er das kann oder nicht.`,
+		en: ` The question is whether he can do it or not.`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Die gute Nachricht ist, dass wir Ihnen helfen können.`,
+		en: `The good news is that we'll be able to help you`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Die Preise sind hier ziemlich hoch, aber das kommt durch den wirklich guten Kundenservice.`,
+		en: `Prices are high here but that's because the after-sale service is really good.`,
+	},
+	{
+		ger: `Die Wahrheit ist, ich mag ihn nicht.`,
+		en: `Truth is, I don't like him.`,
 	},
 	{
 		ger: ``,
