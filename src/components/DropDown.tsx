@@ -24,11 +24,11 @@ export default function DropDown(props: Props): JSX.Element {
 
 	const {
 		setLanguageMode,
-		setQuestionLanguage,
-		setAnswerLangauge,
+		setQuestionLanguage: setFirstDropDown,
+		setAnswerLangauge: setSecondDropDown,
 		languageMode,
-		questionLanguage,
-		answerLanguage,
+		questionLanguage: firstDropDown,
+		answerLanguage: secondDropDown,
 		setTranslationResult,
 		setTextToTranslate,
 		setFile,
@@ -49,11 +49,11 @@ export default function DropDown(props: Props): JSX.Element {
 				currentLanguageMode = textClicked;
 				setCookieCurrentMode(textClicked);
 				break;
-			case 'QuestionLanguage':
-				setQuestionLanguage(textClicked);
+			case 'firstDropDown':
+				setFirstDropDown(textClicked);
 				break;
-			case 'AnswerLanguage':
-				setAnswerLangauge(textClicked);
+			case 'secondDropDown':
+				setSecondDropDown(textClicked);
 				break;
 		}
 	};
@@ -77,10 +77,10 @@ export default function DropDown(props: Props): JSX.Element {
 		switch (name) {
 			case 'Mode':
 				return languageMode;
-			case 'QuestionLanguage':
-				return questionLanguage;
-			case 'AnswerLanguage':
-				return answerLanguage;
+			case 'firstDropDown':
+				return firstDropDown;
+			case 'secondDropDown':
+				return secondDropDown;
 		}
 	}
 

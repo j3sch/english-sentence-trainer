@@ -1,7 +1,7 @@
 export default [
 	{
-		ger: 'goingToFuture',
-		en: 'goingToFuture',
+		ger: 'Dass er Erfolg haben wird, ist sicher.',
+		en: 'That he will succeed is certain.',
 	},
 	{
 		ger: ``,

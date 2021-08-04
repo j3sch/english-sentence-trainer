@@ -8,6 +8,14 @@ import languagesDropDownItems from '~/data/languagesDropDownItems';
 
 export default function NavBar(): JSX.Element {
 	const [isOpen, setIsOpen] = useState(false);
+	const [questionLanguage, setQuestionLanguage] = useState('firstDropDown');
+	const [answerLanguage, setAnswerLanguage] = useState('secondDropDown');
+
+	function switchLanguages() {
+		const dropDownValue = questionLanguage;
+		setQuestionLanguage(answerLanguage);
+		setAnswerLanguage(dropDownValue);
+	}
 	return (
 		<div>
 			<nav className="bg-black px-4 shadow-xl w-full">
@@ -29,29 +37,37 @@ export default function NavBar(): JSX.Element {
 							<div className="w-1/6 flex justify-center">
 								<DropDown name="Mode" dropDownItems={modeDropDownItems} />
 							</div>
-							<div className="mx-5 flex items-center space-x-1">
+							<div className="flex items-center relative content-around">
 								<DropDown
-									name="QuestionLanguage"
+									name={questionLanguage}
 									dropDownItems={languagesDropDownItems}
 								/>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="h-6 w-6 text-gray-300"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
+								<button
+									onClick={switchLanguages}
+									className=" absolute left-[3.7rem]"
 								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="h-7 w-7 text-gray-300"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+										/>
+									</svg>
+								</button>
+
+								<div className="absolute left-[5.5rem]">
+									<DropDown
+										name={answerLanguage}
+										dropDownItems={languagesDropDownItems}
 									/>
-								</svg>
-								<DropDown
-									name="AnswerLanguage"
-									dropDownItems={languagesDropDownItems}
-								/>
+								</div>
 							</div>
 
 							{/* <a
