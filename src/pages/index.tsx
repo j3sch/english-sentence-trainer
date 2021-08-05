@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import nookies from 'nookies';
 import { GetServerSideProps } from 'next';
 import Main from '~/components/Main';
@@ -22,7 +22,6 @@ interface props {
 export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 	const [questionLanguage, setQuestionLanguage] = useState('GER');
 	const [answerLanguage, setAnswerLangauge] = useState('EN');
-	const [switchLanguage, setSwitchLanguage] = useState(false);
 
 	const [textToTranslate, setTextToTranslate] = useState('');
 	const [translationResult, setTranslationResult] = useState('');
@@ -45,8 +44,6 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 					properties,
 					cookie,
 					ctx,
-					setSwitchLanguage,
-					switchLanguage,
 				}}
 			>
 				<NavBar />

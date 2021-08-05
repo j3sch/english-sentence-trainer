@@ -26,7 +26,6 @@ export default function Main(): JSX.Element {
 		setTranslationResult,
 		properties,
 		cookie,
-		switchLanguage,
 		ctx,
 	} = useContext(Context) || {};
 
@@ -44,12 +43,6 @@ export default function Main(): JSX.Element {
 	useEffect(() => {
 		pickExercise();
 	}, []);
-
-	useEffect(() => {
-		const textToTranslateSaved = textToTranslate;
-		setTextToTranslate(translationResult);
-		setTranslationResult(textToTranslateSaved);
-	}, [switchLanguage]);
 
 	const addExercise = async (
 		letterEqual: number[],

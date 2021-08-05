@@ -12,18 +12,21 @@ export default function NavBar(): JSX.Element {
 	const [questionLanguage, setQuestionLanguage] = useState('firstDropDown');
 	const [answerLanguage, setAnswerLanguage] = useState('secondDropDown');
 
-	const { setSwitchLanguage, switchLanguage } = useContext(Context) || {};
+	const {
+		setTextToTranslate,
+		setTranslationResult,
+		translationResult,
+		textToTranslate,
+	} = useContext(Context) || {};
 
 	function switchLanguages() {
 		const dropDownValue = questionLanguage;
 		setQuestionLanguage(answerLanguage);
 		setAnswerLanguage(dropDownValue);
 
-		if (switchLanguage) {
-			setSwitchLanguage(false);
-		} else {
-			setSwitchLanguage(true);
-		}
+		const textToTranslateSaved = textToTranslate;
+		setTextToTranslate(translationResult);
+		setTranslationResult(textToTranslateSaved);
 	}
 
 	return (
