@@ -20,7 +20,6 @@ interface props {
 }
 
 export default function Home({ properties, cookie, ctx }: props): JSX.Element {
-	const [languageMode, setLanguageMode] = useState('');
 	const [questionLanguage, setQuestionLanguage] = useState('GER');
 	const [answerLanguage, setAnswerLangauge] = useState('EN');
 	const [switchLanguage, setSwitchLanguage] = useState(false);
@@ -29,21 +28,10 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 	const [translationResult, setTranslationResult] = useState('');
 	const [file, setFile] = useState([{ ger: '', en: '' }]);
 
-	useEffect(() => {
-		let languageModeCookie = nookies.get(ctx).SelectedLanguageMode;
-
-		if (languageModeCookie === undefined) {
-			languageModeCookie = 'Random';
-		}
-		setLanguageMode(languageModeCookie);
-	}, []);
-
 	return (
 		<div className="h-full w-full overflow-hidden">
 			<Context.Provider
 				value={{
-					languageMode,
-					setLanguageMode,
 					questionLanguage,
 					setQuestionLanguage,
 					answerLanguage,

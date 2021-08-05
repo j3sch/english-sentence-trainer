@@ -8,6 +8,7 @@ import present from '~/data/ger-en/present';
 import past from '~/data/ger-en/past';
 import future from '~/data/ger-en/future';
 import ExerciseHistory from './ExerciseHistory';
+import nookies from 'nookies';
 
 const exerciseHistory: {
 	letterEqual: number[];
@@ -17,9 +18,8 @@ const exerciseHistory: {
 }[] = [];
 
 export default function Main(): JSX.Element {
-	const [translatedText, setTranslatedText] = useState(' ');
+	const [translatedText, setTranslatedText] = useState('');
 	const {
-		languageMode,
 		textToTranslate,
 		setTextToTranslate,
 		translationResult,
@@ -27,6 +27,7 @@ export default function Main(): JSX.Element {
 		properties,
 		cookie,
 		switchLanguage,
+		ctx,
 	} = useContext(Context) || {};
 
 	useEffect(() => {
@@ -41,7 +42,6 @@ export default function Main(): JSX.Element {
 	});
 
 	useEffect(() => {
-		setTranslatedText('');
 		pickExercise();
 	}, []);
 
@@ -62,7 +62,8 @@ export default function Main(): JSX.Element {
 
 	function pickExercise() {
 		let file: { ger: string; en: string }[] = [{ ger: '', en: '' }];
-		switch (languageMode) {
+
+		switch (nookies.get(ctx)['SelectedLanguageMode']) {
 			case 'Random':
 				file = pickRandomExercise();
 				break;
@@ -76,6 +77,7 @@ export default function Main(): JSX.Element {
 				file = future;
 				break;
 		}
+
 		const randomNum = Math.floor(Math.random() * file.length);
 		setTextToTranslate(file[randomNum].ger);
 		setTranslationResult(file[randomNum].en);

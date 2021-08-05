@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useState, Fragment, useContext, useEffect } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
 import nookies from 'nookies';
@@ -23,10 +23,8 @@ export default function DropDown(props: Props): JSX.Element {
 	let currentLanguageMode = '';
 
 	const {
-		setLanguageMode,
 		setQuestionLanguage: setFirstDropDown,
 		setAnswerLangauge: setSecondDropDown,
-		languageMode,
 		questionLanguage: firstDropDown,
 		answerLanguage: secondDropDown,
 		setTranslationResult,
@@ -34,6 +32,12 @@ export default function DropDown(props: Props): JSX.Element {
 		setFile,
 		ctx,
 	} = useContext(Context) || {};
+
+	const [languageMode, setLanguageMode] = useState('');
+
+	useEffect(() => {
+		setLanguageMode(nookies.get(ctx)['SelectedLanguageMode']);
+	}, []);
 
 	function setCookieCurrentMode(textClicked: string) {
 		nookies.set(ctx, 'SelectedLanguageMode', textClicked, {
