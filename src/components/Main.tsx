@@ -115,8 +115,8 @@ export default function Main(): JSX.Element {
 			<ExerciseHistory exerciseHistory={exerciseHistory} />
 			{exerciseHistory.length !== 0 && (
 				<Link href="/history">
-					<a>
-						<ChevronDownIcon className="h-12 w-12 text-grey-300 m-6 cursor-pointer" />
+					<a className="focus:outline-none focus-visible:ring-2 ring-white rounded-lg border-solid p-1 m-5">
+						<ChevronDownIcon className="h-10 w-10 text-grey-300 cursor-pointer" />
 					</a>
 				</Link>
 			)}

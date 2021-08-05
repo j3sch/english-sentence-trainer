@@ -34,9 +34,9 @@ export default function NavBar(): JSX.Element {
 		<div>
 			<nav className="bg-black px-4 shadow-xl w-full">
 				<div className="flex items-center h-24">
-					<div className="w-40">
+					<div className="w-40 h-full flex items-center">
 						<Link href="/">
-							<a>
+							<a className="focus:outline-none focus-visible:ring-2 py-2 focus-visible:mr-4 rounded-lg ring-white">
 								<Image
 									alt="sentence builder logo"
 									src="/images/sentence-builder.svg"
@@ -53,16 +53,14 @@ export default function NavBar(): JSX.Element {
 							<div className="w-1/6 flex justify-center">
 								<DropDown name="Mode" dropDownItems={modeDropDownItems} />
 							</div>
-							<div className="flex items-center relative w-48">
-								<div className="transform origin-right">
-									<DropDown
-										name={questionLanguage}
-										dropDownItems={languagesDropDownItems}
-									/>
-								</div>
+							<div className="flex items-center relative w-44">
+								<DropDown
+									name={questionLanguage}
+									dropDownItems={languagesDropDownItems}
+								/>
 								<button
 									onClick={switchLanguages}
-									className=" absolute left-[3.7rem]"
+									className=" absolute left-[3.5rem] focus:outline-none focus-visible:left-[3.4rem] focus-visible:px-0.5 focus-visible:ring-2 py-1 rounded-lg focus-visible:ring-white"
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"

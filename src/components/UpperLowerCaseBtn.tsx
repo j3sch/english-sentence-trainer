@@ -37,7 +37,7 @@ export default function UpperLowerCaseBtn(): JSX.Element {
 	) : (
 		<button
 			onClick={handleClick}
-			className="bg-[#9a9ab6] bg-opacity-60 hover:bg-[#5f59fa] text-gray-300 w-24 font-bold text-lg py-2 px-4 rounded-lg flex items-center justify-center"
+			className="bg-[#9a9ab6] bg-opacity-60 hover:bg-[#929297] text-gray-300 w-24 font-bold text-lg py-2 px-4 rounded-lg flex items-center justify-center"
 		>
 			a & a
 		</button>
