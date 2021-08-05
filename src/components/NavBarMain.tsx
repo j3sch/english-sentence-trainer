@@ -32,14 +32,16 @@ export default function NavBar(): JSX.Element {
 				<div className="flex items-center h-24">
 					<div className="w-44">
 						<Link href="/">
-							<Image
-								alt="sentence builder logo"
-								src="/images/sentence-builder.svg"
-								width={147}
-								height={49}
-								priority
-								className="cursor-pointer"
-							/>
+							<a>
+								<Image
+									alt="sentence builder logo"
+									src="/images/sentence-builder.svg"
+									width={147}
+									height={49}
+									priority
+									className="cursor-pointer"
+								/>
+							</a>
 						</Link>
 					</div>
 					<div className="hidden md:block w-full">

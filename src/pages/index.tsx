@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import nookies from 'nookies';
 import { GetServerSideProps } from 'next';
 import Main from '~/components/Main';
-import NavBar from '~/components/NavBar';
+import NavBar from '~/components/NavBarMain';
 import Context from '~/utils/context';
-import connectToDatabase from '~/utils/mongodb';
 import Footer from '~/components/Footer';
 import getHistoryDB from '~/helper/getHistoryDB';
+
 interface props {
 	properties: {
 		_id: number;
@@ -20,16 +20,7 @@ interface props {
 }
 
 export default function Home({ properties, cookie, ctx }: props): JSX.Element {
-	function getCurrentMode() {
-		const cookies = nookies.get(ctx);
-
-		if (cookies.SelectedLanguageMode === undefined) {
-			return 'Random';
-		}
-		return cookies.SelectedLanguageMode;
-	}
-
-	const [languageMode, setLanguageMode] = useState(getCurrentMode());
+	const [languageMode, setLanguageMode] = useState('');
 	const [questionLanguage, setQuestionLanguage] = useState('GER');
 	const [answerLanguage, setAnswerLangauge] = useState('EN');
 	const [switchLanguage, setSwitchLanguage] = useState(false);
@@ -37,6 +28,15 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 	const [textToTranslate, setTextToTranslate] = useState('');
 	const [translationResult, setTranslationResult] = useState('');
 	const [file, setFile] = useState([{ ger: '', en: '' }]);
+
+	useEffect(() => {
+		let languageModeCookie = nookies.get(ctx).SelectedLanguageMode;
+
+		if (languageModeCookie === undefined) {
+			languageModeCookie = 'Random';
+		}
+		setLanguageMode(languageModeCookie);
+	}, []);
 
 	return (
 		<div className="h-full w-full overflow-hidden">

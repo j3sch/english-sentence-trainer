@@ -1,10 +1,11 @@
 import nookies from 'nookies';
 import { GetServerSideProps } from 'next';
 import connectToDatabase from '~/utils/mongodb';
-import NavBarImpressum from '~/components/NavBarImpressum';
+import NavBarImpressum from '~/components/NavBarOnlyLogo';
 import GoBackBtn from '~/components/GoBackBtn';
 import Footer from '~/components/Footer';
 import ExerciseHistory from '~/components/ExerciseHistory';
+
 interface Props {
 	exerciseHistory: {
 		letterEqual: number[];

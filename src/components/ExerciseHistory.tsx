@@ -7,7 +7,9 @@ interface Props {
 	}[];
 }
 
-export default function ExerciseHistory({ exerciseHistory }: Props): JSX.Element {
+export default function ExerciseHistory({
+	exerciseHistory,
+}: Props): JSX.Element {
 	let counter = 0;
 	return (
 		<>

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import GoBackBtn from '~/components/GoBackBtn';
-import NavBarImpressum from '~/components/NavBarImpressum';
+import NavBarImpressum from '~/components/NavBarOnlyLogo';
 import Footer from '~/components/Footer';
 
 export default function Impressum(): JSX.Element {

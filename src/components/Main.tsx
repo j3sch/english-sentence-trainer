@@ -41,6 +41,11 @@ export default function Main(): JSX.Element {
 	});
 
 	useEffect(() => {
+		setTranslatedText('');
+		pickExercise();
+	}, []);
+
+	useEffect(() => {
 		const textToTranslateSaved = textToTranslate;
 		setTextToTranslate(translationResult);
 		setTranslationResult(textToTranslateSaved);
@@ -98,10 +103,6 @@ export default function Main(): JSX.Element {
 		pickExercise();
 	};
 
-	if (textToTranslate === '') {
-		pickExercise();
-	}
-
 	return (
 		<div className="flex flex-col justify-items-center bg-[#212123] h-full w-full text-gray-300 items-center">
 			<p className="h-1/4 flex items-center justify-center  text-4xl text-center">
@@ -119,7 +120,9 @@ export default function Main(): JSX.Element {
 			<ExerciseHistory exerciseHistory={exerciseHistory} />
 			{exerciseHistory.length !== 0 && (
 				<Link href="/history">
-					<ChevronDownIcon className="h-12 w-12 text-grey-300 m-6 cursor-pointer" />
+					<a>
+						<ChevronDownIcon className="h-12 w-12 text-grey-300 m-6 cursor-pointer" />
+					</a>
 				</Link>
 			)}
 		</div>
