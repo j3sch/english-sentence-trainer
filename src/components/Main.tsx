@@ -7,7 +7,7 @@ import pickRandomExercise from '~/helper/pickRandomExercise';
 import present from '~/data/ger-en/present';
 import past from '~/data/ger-en/past';
 import future from '~/data/ger-en/future';
-import Exercise from './Exercise';
+import ExerciseHistory from './ExerciseHistory';
 
 const exerciseHistory: {
 	letterEqual: number[];
@@ -17,7 +17,7 @@ const exerciseHistory: {
 }[] = [];
 
 export default function Main(): JSX.Element {
-	const [translatedText, setTranslatedText] = useState('');
+	const [translatedText, setTranslatedText] = useState(' ');
 	const {
 		languageMode,
 		textToTranslate,
@@ -41,7 +41,6 @@ export default function Main(): JSX.Element {
 	});
 
 	useEffect(() => {
-		console.log(switchLanguage);
 		const textToTranslateSaved = textToTranslate;
 		setTextToTranslate(translationResult);
 		setTranslationResult(textToTranslateSaved);
@@ -72,7 +71,6 @@ export default function Main(): JSX.Element {
 				file = future;
 				break;
 		}
-
 		const randomNum = Math.floor(Math.random() * file.length);
 		setTextToTranslate(file[randomNum].ger);
 		setTranslationResult(file[randomNum].en);
@@ -118,7 +116,7 @@ export default function Main(): JSX.Element {
 					className="h-24 w-full text-2xl text-center rounded-lg text-white bg-[#706CF9]"
 				/>
 			</form>
-			<Exercise exerciseHistory={exerciseHistory} />
+			<ExerciseHistory exerciseHistory={exerciseHistory} />
 			{exerciseHistory.length !== 0 && (
 				<Link href="/history">
 					<ChevronDownIcon className="h-12 w-12 text-grey-300 m-6 cursor-pointer" />

@@ -4,7 +4,7 @@ import connectToDatabase from '~/utils/mongodb';
 import NavBarImpressum from '~/components/NavBarImpressum';
 import GoBackBtn from '~/components/GoBackBtn';
 import Footer from '~/components/Footer';
-import Exercise from '~/components/Exercise';
+import ExerciseHistory from '~/components/ExerciseHistory';
 interface Props {
 	exerciseHistory: {
 		letterEqual: number[];
@@ -19,7 +19,7 @@ export default function History({ exerciseHistory }: Props): JSX.Element {
 		<>
 			<NavBarImpressum />
 			<div className="flex flex-col items-center bg-[#212123] text-gray-300 w-full pt-10 pb-10">
-				<Exercise exerciseHistory={exerciseHistory} />
+				<ExerciseHistory exerciseHistory={exerciseHistory} />
 				<div className="mt-8">
 					<GoBackBtn />
 				</div>

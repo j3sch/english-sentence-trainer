@@ -1,5 +1,3 @@
-import React, { Fragment } from 'react';
-
 interface Props {
 	exerciseHistory: {
 		letterEqual: number[];
@@ -9,7 +7,7 @@ interface Props {
 	}[];
 }
 
-export default function Exercise({ exerciseHistory }: Props): JSX.Element {
+export default function ExerciseHistory({ exerciseHistory }: Props): JSX.Element {
 	let counter = 0;
 	return (
 		<>
