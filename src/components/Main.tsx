@@ -81,7 +81,7 @@ export default function Main(): JSX.Element {
 
 		if (translatedText.length !== 0) {
 			const translatedTextSplitted = translatedText.split('');
-			const letterEqual = textEqual(translatedText, translationResult);
+			const letterEqual = textEqual(translatedText, translationResult, ctx);
 			exerciseHistory.unshift({
 				letterEqual,
 				textToTranslate,
@@ -100,7 +100,7 @@ export default function Main(): JSX.Element {
 
 	return (
 		<div className="flex flex-col justify-items-center bg-[#212123] h-full w-full text-gray-300 items-center">
-			<p className="h-1/4 flex items-center justify-center  text-4xl text-center">
+			<p className="h-1/4 flex px-20 items-center justify-center  text-4xl text-center">
 				{textToTranslate}
 			</p>
 			<form className="w-3/4 mb-24" onSubmit={handleSubmit}>

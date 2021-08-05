@@ -6,6 +6,7 @@ import DropDown from '~/components/DropDown';
 import modeDropDownItems from '~/data/modesDropDownItems';
 import languagesDropDownItems from '~/data/languagesDropDownItems';
 import Context from '~/utils/context';
+import UpperLowerCaseBtn from './UpperLowerCaseBtn';
 
 export default function NavBar(): JSX.Element {
 	const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +34,7 @@ export default function NavBar(): JSX.Element {
 		<div>
 			<nav className="bg-black px-4 shadow-xl w-full">
 				<div className="flex items-center h-24">
-					<div className="w-44">
+					<div className="w-40">
 						<Link href="/">
 							<a>
 								<Image
@@ -47,12 +48,12 @@ export default function NavBar(): JSX.Element {
 							</a>
 						</Link>
 					</div>
-					<div className="hidden md:block w-full">
+					<div className="hidden md:block w-4/5 relative">
 						<div className="mx-5 items-center flex">
 							<div className="w-1/6 flex justify-center">
 								<DropDown name="Mode" dropDownItems={modeDropDownItems} />
 							</div>
-							<div className="flex items-center relative w-2/3">
+							<div className="flex items-center relative w-48">
 								<div className="transform origin-right">
 									<DropDown
 										name={questionLanguage}
@@ -86,7 +87,9 @@ export default function NavBar(): JSX.Element {
 									/>
 								</div>
 							</div>
-
+							<div className="absolute right-14">
+								<UpperLowerCaseBtn />
+							</div>
 							{/* <a
 									href="#"
 									className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"

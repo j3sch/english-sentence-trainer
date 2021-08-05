@@ -1,7 +1,14 @@
+import nookies from 'nookies';
+
 export default function textEqual(
 	translatedText: string,
 	translationResult: string,
+	ctx: {},
 ): number[] {
+	if (nookies.get(ctx)['UpperLowerCase'] === 'false') {
+		translatedText = translatedText.toLowerCase();
+		translationResult = translationResult.toLowerCase();
+	}
 	function removePunction(text: string): string {
 		const textWithoutPunction = text.replace(/[.!?]/g, '');
 		return textWithoutPunction;

@@ -69,6 +69,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
 			path: '/',
 			maxAge: 10 * 365 * 24 * 60 * 60,
 		});
+		nookies.set(ctx, 'SelectedLanguageMode', 'Random', {
+			path: '/',
+			maxAge: 10 * 365 * 24 * 60 * 60,
+		});
 	}
 	const cookie = cookies.Cookie;
 
