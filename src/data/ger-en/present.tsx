@@ -260,16 +260,8 @@ export default [
 		en: `Sometimes, things are more beautiful when you look at them from a different angle.`,
 	},
 	{
-		ger: `Die einzige Frage besteht nun darin, wie wir nach Hause kommen wollen.`,
-		en: `The only question now is how we're going to get home.`,
-	},
-	{
 		ger: `Die Frage ist, ob er das kann oder nicht.`,
 		en: ` The question is whether he can do it or not.`,
-	},
-	{
-		ger: `Die gute Nachricht ist, dass wir Ihnen helfen können.`,
-		en: `The good news is that we'll be able to help you`,
 	},
 	{
 		ger: `Die Preise sind hier ziemlich hoch, aber das kommt durch den wirklich guten Kundenservice.`,
@@ -280,16 +272,16 @@ export default [
 		en: `Truth is, I don't like him.`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Ich liebe sie, aber sie sagt, wir sind nur Freunde.`,
+		en: `I love her, but she says ours is just friendship.`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Ich mache mir Gedanken, ob ich eine so große Aufgabe wie diese bewältigen kann oder nicht.`,
+		en: `I'm concerned whether or not I can handle a big job like that.`,
 	},
 	{
-		ger: ``,
-		en: ``,
+		ger: `Ich mag dich so, wie du bist.`,
+		en: `I love you just as you are.`,
 	},
 	{
 		ger: ``,
