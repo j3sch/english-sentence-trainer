@@ -37,7 +37,7 @@ export default function NavBar(): JSX.Element {
 		setActive(isUpperLowerCaseActiv);
 	}, []);
 
-	function handleClick() {
+	function upperLowerCaseBtnClick() {
 		if (isActive) {
 			setActive(false);
 			nookies.set(null, 'UpperLowerCase', 'false', {
@@ -108,7 +108,10 @@ export default function NavBar(): JSX.Element {
 									/>
 								</div>
 							</div>
-							<div className="absolute right-14">
+							<div
+								onClick={upperLowerCaseBtnClick}
+								className="absolute right-14"
+							>
 								<UpperLowerCaseBtn isActive={isActive} />
 							</div>
 						</div>
@@ -190,7 +193,7 @@ export default function NavBar(): JSX.Element {
 								/>
 							</div>
 							<div
-								onClick={handleClick}
+								onClick={upperLowerCaseBtnClick}
 								className="text-gray-300 hover:bg-gray-700 justify-center w-full hover:text-white flex px-3 py-2 rounded-md text-base font-medium"
 							>
 								<UpperLowerCaseBtn isActive={isActive} />
