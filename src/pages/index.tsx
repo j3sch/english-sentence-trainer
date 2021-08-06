@@ -15,11 +15,10 @@ interface props {
 		translationResult: string;
 		translatedTextSplitted: string[];
 	}[];
-	cookie: string;
-	ctx: {};
+	userId: string;
 }
 
-export default function Home({ properties, cookie, ctx }: props): JSX.Element {
+export default function Home({ properties, userId }: props): JSX.Element {
 	const [questionLanguage, setQuestionLanguage] = useState('GER');
 	const [answerLanguage, setAnswerLangauge] = useState('EN');
 
@@ -42,8 +41,7 @@ export default function Home({ properties, cookie, ctx }: props): JSX.Element {
 					file,
 					setFile,
 					properties,
-					cookie,
-					ctx,
+					userId,
 				}}
 			>
 				<NavBar />
@@ -65,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
 
 	if (cookies.Cookie === undefined) {
 		randomString = randomstring.generate();
-		nookies.set(ctx, 'Cookie', randomString, {
+		nookies.set(ctx, 'UserId', randomString, {
 			path: '/',
 			maxAge: 10 * 365 * 24 * 60 * 60,
 		});
@@ -74,15 +72,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
 			maxAge: 10 * 365 * 24 * 60 * 60,
 		});
 	}
-	const cookie = cookies.Cookie;
+	const userId = cookies.Cookie;
 
-	if (cookie !== undefined) {
-		const filtered = await getHistoryDB(cookie);
+	if (userId !== undefined) {
+		const filtered = await getHistoryDB(userId);
 		return {
-			props: { properties: filtered, cookie },
+			props: { properties: filtered, userId },
 		};
 	}
 	return {
-		props: { cookie: randomString },
+		props: { userId: randomString },
 	};
 };

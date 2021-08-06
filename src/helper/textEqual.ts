@@ -1,11 +1,10 @@
-import nookies from 'nookies';
+import { parseCookies } from 'nookies';
 
 export default function textEqual(
 	translatedText: string,
 	translationResult: string,
-	ctx: {},
 ): number[] {
-	if (nookies.get(ctx)['UpperLowerCase'] === 'false') {
+	if (parseCookies()['UpperLowerCase'] === 'false') {
 		translatedText = translatedText.toLowerCase();
 		translationResult = translationResult.toLowerCase();
 	}

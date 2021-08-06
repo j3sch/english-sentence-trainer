@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useContext, useEffect } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
-import nookies from 'nookies';
+import nookies, { parseCookies } from 'nookies';
 import Context from '~/utils/context';
 import pickRandomExercise from '~/helper/pickRandomExercise';
 import present from '~/data/ger-en/present';
@@ -30,17 +30,16 @@ export default function DropDown(props: Props): JSX.Element {
 		setTranslationResult,
 		setTextToTranslate,
 		setFile,
-		ctx,
 	} = useContext(Context) || {};
 
 	const [languageMode, setLanguageMode] = useState('');
 
 	useEffect(() => {
-		setLanguageMode(nookies.get(ctx)['SelectedLanguageMode']);
+		setLanguageMode(parseCookies()['SelectedLanguageMode']);
 	}, []);
 
 	function setCookieCurrentMode(textClicked: string) {
-		nookies.set(ctx, 'SelectedLanguageMode', textClicked, {
+		nookies.set(null, 'SelectedLanguageMode', textClicked, {
 			path: '/',
 			maxAge: 10 * 365 * 24 * 60 * 60,
 		});

@@ -8,7 +8,7 @@ import present from '~/data/ger-en/present';
 import past from '~/data/ger-en/past';
 import future from '~/data/ger-en/future';
 import ExerciseHistory from './ExerciseHistory';
-import nookies from 'nookies';
+import { parseCookies } from 'nookies';
 
 const exerciseHistory: {
 	letterEqual: number[];
@@ -25,8 +25,7 @@ export default function Main(): JSX.Element {
 		translationResult,
 		setTranslationResult,
 		properties,
-		cookie,
-		ctx,
+		userId,
 	} = useContext(Context) || {};
 
 	useEffect(() => {
@@ -49,14 +48,14 @@ export default function Main(): JSX.Element {
 		translatedTextSplitted: string[],
 	) => {
 		fetch(
-			`https://english-sentence-trainer.vercel.app/api/exercises?letterEqual=${letterEqual}&textToTranslate=${textToTranslate}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&cookie=${cookie}`,
+			`https://english-sentence-trainer.vercel.app/api/exercises?letterEqual=${letterEqual}&textToTranslate=${textToTranslate}&translationResult=${translationResult}&translatedTextSplitted=${translatedTextSplitted}&userId=${userId}`,
 		);
 	};
 
 	function pickExercise() {
 		let file: { ger: string; en: string }[] = [{ ger: '', en: '' }];
 
-		switch (nookies.get(ctx)['SelectedLanguageMode']) {
+		switch (parseCookies()['SelectedLanguageMode']) {
 			case 'Random':
 				file = pickRandomExercise();
 				break;
@@ -81,7 +80,7 @@ export default function Main(): JSX.Element {
 
 		if (translatedText.length !== 0) {
 			const translatedTextSplitted = translatedText.split('');
-			const letterEqual = textEqual(translatedText, translationResult, ctx);
+			const letterEqual = textEqual(translatedText, translationResult);
 			exerciseHistory.unshift({
 				letterEqual,
 				textToTranslate,

@@ -18,8 +18,7 @@ interface ContextProps {
 		translatedTextSplitted: string[];
 		translationResult: string;
 	}[];
-	cookie: string;
-	ctx: {};
+	userId: string;
 }
 
 export default createContext({} as ContextProps);
