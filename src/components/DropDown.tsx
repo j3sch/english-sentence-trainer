@@ -88,7 +88,7 @@ export default function DropDown(props: Props): JSX.Element {
 	}
 
 	return (
-		<Menu as="div" className="relative inline-block text-left">
+		<Menu as="div" className="relative text-left">
 			{({ open }) => (
 				<>
 					<div>
@@ -109,7 +109,7 @@ export default function DropDown(props: Props): JSX.Element {
 					>
 						<Menu.Items
 							static
-							className="dropDown origin-top-right text-center absolute w-56 shadow-lg bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"
+							className="dropDown origin-top-right text-center z-10 absolute w-56 shadow-lg bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"
 						>
 							<div className="py-1">
 								{dropDownItems.map(

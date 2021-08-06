@@ -1,6 +1,6 @@
 import connectToDatabase from '~/utils/mongodb';
 
-export default async function getHistoryDB(cookie: string) {
+export default async function getHistoryDB(userId: string) {
 	const { db } = await connectToDatabase();
 
 	const data = await db
@@ -10,8 +10,8 @@ export default async function getHistoryDB(cookie: string) {
 				$search: {
 					index: 'default',
 					text: {
-						query: cookie,
-						path: 'data.cookie',
+						query: userId,
+						path: 'data.userId',
 					},
 				},
 			},
