@@ -99,10 +99,10 @@ export default function Main(): JSX.Element {
 
 	return (
 		<div className="flex flex-col justify-items-center bg-[#212123] h-full w-full text-gray-300 items-center">
-			<p className="h-1/4 flex px-20 items-center justify-center  text-4xl text-center">
+			<p className="h-1/4 flex px-10 md:p-16 items-center justify-center text-4xl text-center">
 				{textToTranslate}
 			</p>
-			<form className="w-3/4 mb-24" onSubmit={handleSubmit}>
+			<form className="w-3/4 mb-8 md:mb-16 lg:mb-24" onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Enter the translation"
@@ -114,7 +114,7 @@ export default function Main(): JSX.Element {
 			<ExerciseHistory exerciseHistory={exerciseHistory} />
 			{exerciseHistory.length !== 0 && (
 				<Link href="/history">
-					<a className="focus:outline-none focus-visible:ring-2 ring-white rounded-lg border-solid p-1 m-5">
+					<a className="focus:outline-none focus-visible:ring-2 ring-white rounded-lg border-solid p-1 md:m-2">
 						<ChevronDownIcon className="h-10 w-10 text-grey-300 cursor-pointer" />
 					</a>
 				</Link>
