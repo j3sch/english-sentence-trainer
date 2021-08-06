@@ -42,6 +42,7 @@ export default function DropDown(props: Props): JSX.Element {
 		nookies.set(null, 'SelectedLanguageMode', textClicked, {
 			path: '/',
 			maxAge: 10 * 365 * 24 * 60 * 60,
+			sameSite: 'strict',
 		});
 	}
 

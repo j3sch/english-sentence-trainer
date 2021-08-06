@@ -43,12 +43,14 @@ export default function NavBar(): JSX.Element {
 			nookies.set(null, 'UpperLowerCase', 'false', {
 				path: '/',
 				maxAge: 10 * 365 * 24 * 60 * 60,
+				sameSite: 'strict',
 			});
 		} else {
 			setActive(true);
 			nookies.set(null, 'UpperLowerCase', 'true', {
 				path: '/',
 				maxAge: 10 * 365 * 24 * 60 * 60,
+				sameSite: 'strict',
 			});
 		}
 	}

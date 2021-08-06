@@ -66,16 +66,18 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
 		nookies.set(ctx, 'UserId', randomString, {
 			path: '/',
 			maxAge: 10 * 365 * 24 * 60 * 60,
+			sameSite: 'strict',
 		});
 		nookies.set(ctx, 'SelectedLanguageMode', 'Random', {
 			path: '/',
 			maxAge: 10 * 365 * 24 * 60 * 60,
+			sameSite: 'strict',
 		});
 	}
 	const userId = cookies.Cookie;
 
 	if (userId !== undefined) {
-		const filtered = await getHistoryDB(userId);
+		const filtered = await getHistoryDB(userId, 1);
 		return {
 			props: { properties: filtered, userId },
 		};

@@ -1,6 +1,6 @@
 import connectToDatabase from '~/utils/mongodb';
 
-export default async function getHistoryDB(userId: string) {
+export default async function getHistoryDB(userId: string, limit: number) {
 	const { db } = await connectToDatabase();
 
 	const data = await db
@@ -11,13 +11,13 @@ export default async function getHistoryDB(userId: string) {
 					index: 'default',
 					text: {
 						query: userId,
-						path: 'data.userId',
+						path: 'data.UserId',
 					},
 				},
 			},
 		])
 		.sort({ _id: -1 })
-		.limit(1)
+		.limit(limit)
 		.toArray();
 
 	const properties = JSON.parse(JSON.stringify(data));

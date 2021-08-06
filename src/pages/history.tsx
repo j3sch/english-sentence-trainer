@@ -1,11 +1,10 @@
 import nookies from 'nookies';
 import { GetServerSideProps } from 'next';
-import connectToDatabase from '~/utils/mongodb';
 import NavBarImpressum from '~/components/NavBarOnlyLogo';
 import GoBackBtn from '~/components/GoBackBtn';
 import Footer from '~/components/Footer';
 import ExerciseHistory from '~/components/ExerciseHistory';
-
+import getHistoryDB from '~/helper/getHistoryDB';
 interface Props {
 	exerciseHistory: {
 		letterEqual: number[];
@@ -31,58 +30,11 @@ export default function History({ exerciseHistory }: Props): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
-	const { db } = await connectToDatabase();
 
-	const cookie = nookies.get(ctx).Cookie;
+	const userId = nookies.get(ctx).UserId;
 
-	if (cookie !== undefined) {
-		const data = await db
-			.collection('exercises')
-			.aggregate([
-				{
-					$search: {
-						index: 'default',
-						text: {
-							query: cookie,
-							path: 'data.cookie',
-						},
-					},
-				},
-			])
-			.sort({ _id: -1 })
-			.limit(60)
-			.toArray();
-
-		const properties = JSON.parse(JSON.stringify(data));
-
-		const filtered = properties.map(
-			(property: {
-				_id: number;
-				data: {
-					letterEqual: string;
-					textToTranslate: string;
-					translatedTextSplitted: string;
-					translationResult: string;
-				};
-			}) => {
-				const letterEqualArray = property.data.letterEqual.split(',');
-
-				const letterEqualNumber = letterEqualArray.map((letter: string) => {
-					return parseInt(letter);
-				});
-
-				const translatedTextSplitted =
-					property.data.translatedTextSplitted.split(',');
-
-				return {
-					_id: property._id,
-					letterEqual: letterEqualNumber,
-					textToTranslate: property.data.textToTranslate,
-					translationResult: property.data.translationResult,
-					translatedTextSplitted,
-				};
-			},
-		);
+	if (userId !== undefined) {
+		const filtered = await getHistoryDB(userId, 60);
 
 		return {
 			props: { exerciseHistory: filtered },
