@@ -61,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
 
 	const cookies = nookies.get(ctx);
 
-	if (cookies.Cookie === undefined) {
+	if (cookies.UserId === undefined) {
 		randomString = randomstring.generate();
 		nookies.set(ctx, 'UserId', randomString, {
 			path: '/',
@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
 			sameSite: 'strict',
 		});
 	}
-	const userId = cookies.Cookie;
+	const userId = cookies.UserId;
 
 	if (userId !== undefined) {
 		const filtered = await getHistoryDB(userId, 1);
