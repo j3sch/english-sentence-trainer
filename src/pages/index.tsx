@@ -54,7 +54,7 @@ export default function Home({ properties, userId }: props): JSX.Element {
 	);
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx: {}) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const randomstring = require('randomstring');
 
 	let randomString;
