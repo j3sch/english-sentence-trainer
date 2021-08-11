@@ -35,7 +35,7 @@ export default function ExerciseHistory({
 								<p className="p-[0.6rem] border-b-2 border-gray-600 w-full border-opacity-30 bg-green-600 bg-opacity-30">
 									{historyItem.translationResult}
 								</p>
-								<div className="p-1 grid-cols-18 sm:grid-cols-26 grid md:grid-cols-38 lg:grid-cols-50 xl:grid-cols-62 justify-center">
+								<div className="p-1 flex justify-center">
 									{historyItem.translatedTextSplitted.map(
 										(translatedChar, j) => {
 											translatedChar === ' ' && counter++;
